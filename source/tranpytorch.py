@@ -368,7 +368,7 @@ class Net(nn.Module):
         x=F.relu(self.fc1(encode_interaction))
         x=self.dropout(x)
         x = F.relu(self.fc2(x))
-        x = self.dropout(x)
+        x = self.dropout2(x)
         x = F.relu(self.fc3(x))
         x = self.fc4(x)
         return x,Embedding3
