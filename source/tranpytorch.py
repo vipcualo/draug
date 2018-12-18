@@ -319,7 +319,7 @@ def nfold_1_2_3_setting_sample(XD, XT, Y, label_row_inds, label_col_inds, measur
 
 
 class Net(nn.Module):
-    def __init__(self,FILTER_LENGTH1,NUM_FILTERS):
+    def __init__(self,FILTER_LENGTH1,NUM_FILTERS,FILTER_LENGTH12):
         super(Net, self).__init__()
         # convolutional layer (sees 32x32x3 image tensor)
         self.embeddingXD=nn.Embedding(100,128)
@@ -328,15 +328,15 @@ class Net(nn.Module):
         self.conv3XD = nn.Conv1d(NUM_FILTERS*2, NUM_FILTERS*3, FILTER_LENGTH1, padding=0)
 
         self.embeddingXT = nn.Embedding(1000, 128)
-        self.conv1XT = nn.Conv1d(128, NUM_FILTERS, FILTER_LENGTH1, padding=0)
-        self.conv2XT = nn.Conv1d(NUM_FILTERS, NUM_FILTERS * 2, FILTER_LENGTH1, padding=0)
-        self.conv3XT = nn.Conv1d(NUM_FILTERS * 2, NUM_FILTERS * 3, FILTER_LENGTH1, padding=0)
+        self.conv1XT = nn.Conv1d(128, NUM_FILTERS, FILTER_LENGTH12, padding=0)
+        self.conv2XT = nn.Conv1d(NUM_FILTERS, NUM_FILTERS * 2, FILTER_LENGTH12, padding=0)
+        self.conv3XT = nn.Conv1d(NUM_FILTERS * 2, NUM_FILTERS * 3, FILTER_LENGTH12, padding=0)
 
 
         self.fc1 = nn.Linear(192, 1024)
         self.fc2 = nn.Linear(1024, 1024)
         self.fc3 = nn.Linear(1024, 512)
-        self.fc4= nn.Linear(512,1)
+        self.fc4= nn.Linear(512,1,)
         self.dropout = nn.Dropout(0.1)
         self.dropout2 = nn.Dropout(0.1)
 
@@ -432,7 +432,8 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                     train_drugs=np.array(train_drugs)
                     train_prots=np.array(train_prots)
                     train_Y=np.array(train_Y)
-                    model = Net(4, 32)
+                    model = Net(param2value, param1value,param3value)
+                    print("param ",param2value," ",param1value," ",param3value)
                     model.cuda()
                     criterion = nn.MSELoss()
                     optimizer = optim.Adam(model.parameters())
