@@ -322,7 +322,7 @@ class Net(nn.Module):
     def __init__(self,FILTER_LENGTH1,NUM_FILTERS,FILTER_LENGTH12):
         super(Net, self).__init__()
         # convolutional layer (sees 32x32x3 image tensor)
-        self.embeddingXD=nn.Embedding(100,128)
+        self.embeddingXD=nn.Embedding(105,128)
         self.conv1XD = nn.Conv1d(128, 32, FILTER_LENGTH1, padding=0)
         self.conv2XD = nn.Conv1d(NUM_FILTERS, NUM_FILTERS*2, FILTER_LENGTH1, padding=0)
         self.conv3XD = nn.Conv1d(NUM_FILTERS*2, NUM_FILTERS*3, FILTER_LENGTH1, padding=0)
