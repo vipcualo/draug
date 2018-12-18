@@ -446,9 +446,10 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             #print(data.shape)
                             target=train_Y[j:end]
                             target=torch.FloatTensor(target)
+                            target=target.cuda()
                             optimizer.zero_grad()
                             output,Embedding3 = model(data,data2)
-                            loss = criterion(output, torch.tensor(target,dtype=torch.float))
+                            loss = criterion(output,target)
                             loss_epoch+=loss.item()*len(data)
                             print (j, ", ",loss.item())
                             loss.backward()
