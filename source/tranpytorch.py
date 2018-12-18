@@ -436,7 +436,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                     print("param ",param2value," ",param1value," ",param3value)
                     model.cuda()
                     criterion = nn.MSELoss()
-                    optimizer = optim.Adam(model.parameters())
+                    optimizer = optim.Adam(model.parameters(),lr=0.001)
                     for i in range(epoch):
                         loss_epoch=0
                         model.train()
