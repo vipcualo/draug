@@ -327,7 +327,7 @@ class Net(nn.Module):
         self.conv2XD = nn.Conv1d(NUM_FILTERS, NUM_FILTERS*2, FILTER_LENGTH1, padding=0)
         self.conv3XD = nn.Conv1d(NUM_FILTERS*2, NUM_FILTERS*3, FILTER_LENGTH1, padding=0)
 
-        self.embeddingXT = nn.Embedding(65, 128)
+        self.embeddingXT = nn.Embedding(26, 128)
         self.conv1XT = nn.Conv1d(128, NUM_FILTERS, FILTER_LENGTH12, padding=0)
         self.conv2XT = nn.Conv1d(NUM_FILTERS, NUM_FILTERS * 2, FILTER_LENGTH12, padding=0)
         self.conv3XT = nn.Conv1d(NUM_FILTERS * 2, NUM_FILTERS * 3, FILTER_LENGTH12, padding=0)
