@@ -345,7 +345,6 @@ class Net(nn.Module):
         self.fc3 = nn.Linear(1024, 512)
         torch.nn.init.xavier_uniform(self.fc3.weight)
         self.fc4= nn.Linear(512,1,)
-        torch.nn.init.xavier_uniform(self.fc4.weight)
         self.dropout = nn.Dropout(0.1)
         self.dropout2 = nn.Dropout(0.1)
 
