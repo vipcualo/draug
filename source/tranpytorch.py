@@ -346,7 +346,7 @@ class Net(nn.Module):
         #print(XDinput)
         Embedding1=self.embeddingXD(XDinput)
         Embedding3=Embedding1
-        Embedding1=Embedding1.view(-1,128,100)
+        Embedding1 = Embedding1.permute(0, 2, 1)
         #print(Embedding.shape)
         encode_smiles=F.relu(self.conv1XD(Embedding1))
         encode_smiles = F.relu(self.conv2XD(encode_smiles))
@@ -357,7 +357,7 @@ class Net(nn.Module):
         XTinput = torch.tensor(XTinput, dtype=torch.long)
         XTinput=XTinput.cuda()
         Embedding = self.embeddingXT(XTinput)
-        Embedding= Embedding.view(-1,128,1000)
+        Embedding = Embedding.permute(0, 2, 1)
         encode_protein = F.relu(self.conv1XT(Embedding))
         encode_protein = F.relu(self.conv2XT(encode_protein))
         encode_protein = F.relu(self.conv3XT(encode_protein))
