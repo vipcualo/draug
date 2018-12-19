@@ -345,7 +345,7 @@ class Net(nn.Module):
         XDinput=XDinput.cuda()
         #print(XDinput)
         Embedding1=self.embeddingXD(XDinput)
-        Embedding3=Embedding1
+        Embedding3 = Embedding1
         Embedding1 = Embedding1.permute(0, 2, 1)
         #print(Embedding.shape)
         encode_smiles=F.relu(self.conv1XD(Embedding1))
