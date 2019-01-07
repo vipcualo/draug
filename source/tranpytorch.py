@@ -459,9 +459,10 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             optimizer.zero_grad()
                             output,Embedding3 = model(data,data2)
                             loss = criterion(output,target)
-                            loss_epoch+=loss.item()*len(data)
                             loss.backward()
                             optimizer.step()
+                            loss_epoch+=loss.item()*len(data)
+
                         print("epoch ",i," ,loss ",loss_epoch*1.0/len(train_drugs))
                         model.eval()
                         loss_eval=0
