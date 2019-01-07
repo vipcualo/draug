@@ -468,6 +468,10 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             end=min(j+batchsz,len(val_drugs))
                             data=val_drugs[j:end]
                             data2=val_prots[j:end]
+                            data = torch.tensor(data, dtype=torch.long)
+                            data = data.cuda()
+                            data2 = torch.tensor(data2, dtype=torch.long)
+                            data2 = data2.cuda()
                             target=val_Y[j:end]
                             target = torch.FloatTensor(target)
                             target = target.cuda()
