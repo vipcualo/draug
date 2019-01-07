@@ -349,8 +349,6 @@ class Net(nn.Module):
         self.dropout2 = nn.Dropout(0.1)
 
     def forward(self, XDinput,XTinput):
-        XDinput=torch.tensor(XDinput,dtype=torch.long)
-        XDinput=XDinput.cuda()
         #print(XDinput)
         Embedding1=self.embeddingXD(XDinput)
         Embedding3 = Embedding1
@@ -361,9 +359,6 @@ class Net(nn.Module):
         encode_smiles = F.relu(self.conv3XD(encode_smiles))
         #print(encode_smiles.shape)
         encode_smiles = torch.mean(encode_smiles.view(encode_smiles.size(0), encode_smiles.size(1), -1), dim=2)
-
-        XTinput = torch.tensor(XTinput, dtype=torch.long)
-        XTinput=XTinput.cuda()
         Embedding = self.embeddingXT(XTinput)
         Embedding = torch.transpose(Embedding, 2, 1)
         encode_protein = F.relu(self.conv1XT(Embedding))
@@ -449,6 +444,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         loss_epoch=0
                         model.train()
                         for j in range(0,len(train_drugs),batchsz):
+                            optimizer.zero_grad()
                             end=min(j+batchsz,len(train_drugs))
                             data=train_drugs[j:end]
                             data2=train_prots[j:end]
@@ -456,7 +452,10 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             target=train_Y[j:end]
                             target=torch.FloatTensor(target)
                             target=target.cuda()
-                            optimizer.zero_grad()
+                            data = torch.tensor(data, dtype=torch.long)
+                            data = data.cuda()
+                            data2 = torch.tensor(data2, dtype=torch.long)
+                            data2 = data2.cuda()
                             output,Embedding3 = model(data,data2)
                             loss = criterion(output,target)
                             loss.backward()
