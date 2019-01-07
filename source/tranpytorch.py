@@ -345,6 +345,7 @@ class Net(nn.Module):
         self.fc3 = nn.Linear(1024, 512)
         torch.nn.init.xavier_uniform(self.fc3.weight)
         self.fc4= nn.Linear(512,1,)
+        torch.nn.init.normal(self.fc4.weight)
         self.dropout = nn.Dropout(0.1)
         self.dropout2 = nn.Dropout(0.1)
 
@@ -377,7 +378,7 @@ class Net(nn.Module):
         x = self.dropout2(x)
         x = F.relu(self.fc3(x))
         x = self.fc4(x)
-        return x,Embedding3
+        return x
 
 
 
@@ -442,7 +443,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                     print("param ",param2value," ",param1value," ",param3value)
                     model.cuda()
                     criterion = nn.MSELoss()
-                    optimizer = optim.Adam(model.parameters(),lr=0.001)
+                    optimizer = optim.Adam(model.parameters())
                     for i in range(epoch):
                         loss_epoch=0
                         model.train()
@@ -458,7 +459,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             data = data.cuda()
                             data2 = torch.tensor(data2, dtype=torch.long)
                             data2 = data2.cuda()
-                            output,Embedding3 = model(data,data2)
+                            output = model(data,data2)
                             loss = criterion(output,target)
                             loss.backward()
                             optimizer.step()
@@ -478,7 +479,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             target=val_Y[j:end]
                             target = torch.FloatTensor(target)
                             target = target.cuda()
-                            output,Embedding3 = model(data,data2)
+                            output = model(data,data2)
                             loss = criterion(output, target)
                             loss_eval+=loss.item()*len(data)
                         print("val ",loss_eval*1.0/len(val_drugs))
