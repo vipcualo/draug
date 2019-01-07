@@ -107,6 +107,8 @@ def build_combined_categorical(FLAGS, NUM_FILTERS, FILTER_LENGTH1, FILTER_LENGTH
     print("haha ",FLAGS.max_smi_len)
     print("hoho",NUM_FILTERS)
     print("hahs",FILTER_LENGTH1)
+    print("1 ,charsmiset_size")
+    print("2, charseqset_size")
     XDinput = Input(shape=(FLAGS.max_smi_len,), dtype='int32') ### Buralar flagdan gelmeliii
     XTinput = Input(shape=(FLAGS.max_seq_len,), dtype='int32')
 
