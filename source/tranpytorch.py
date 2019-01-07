@@ -354,9 +354,10 @@ class Net(nn.Module):
         #print(XDinput)
         Embedding1=self.embeddingXD(XDinput)
         Embedding3 = Embedding1
-        Embedding1 = Embedding1.permute(0, 2, 1)
+        Embedding1 = torch.transpose(Embedding1, 2, 1)
         #print(Embedding.shape)
         encode_smiles=F.relu(self.conv1XD(Embedding1))
+        print(encode_smiles.shape)
         encode_smiles = F.relu(self.conv2XD(encode_smiles))
         encode_smiles = F.relu(self.conv3XD(encode_smiles))
         #print(encode_smiles.shape)
@@ -365,7 +366,7 @@ class Net(nn.Module):
         XTinput = torch.tensor(XTinput, dtype=torch.long)
         XTinput=XTinput.cuda()
         Embedding = self.embeddingXT(XTinput)
-        Embedding = Embedding.permute(0, 2, 1)
+        Embedding = torch.transpose(Embedding, 2, 1)
         encode_protein = F.relu(self.conv1XT(Embedding))
         encode_protein = F.relu(self.conv2XT(encode_protein))
         encode_protein = F.relu(self.conv3XT(encode_protein))
@@ -442,7 +443,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                     train_Y=np.array(train_Y)
                     model = Net(param2value, param1value,param3value)
                     print("param ",param2value," ",param1value," ",param3value)
-                    model.cuda()
                     criterion = nn.MSELoss()
                     optimizer = optim.Adam(model.parameters(),lr=0.001)
                     for i in range(epoch):
