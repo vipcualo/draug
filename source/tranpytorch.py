@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-
+from random import randint
 ### We modified Pahikkala et al. (2014) source code for cross-val process ###
 
 import os
@@ -447,7 +447,8 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                     for i in range(epoch):
                         loss_epoch=0
                         model.train()
-                        for j in range(0,len(train_drugs),3):
+                        st=randint(0,batchsz)
+                        for j in range(st,len(train_drugs),batchsz):
                             optimizer.zero_grad()
                             end=min(j+batchsz,len(train_drugs))
                             data=train_drugs[j:end]
