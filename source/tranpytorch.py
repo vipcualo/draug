@@ -447,14 +447,14 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                     for i in range(epoch):
                         loss_epoch=0
                         model.train()
-                        st=randint(0,batchsz)
-                        for j in range(st,len(train_drugs),batchsz):
+                        #st=randint(0,batchsz)
+                        for j in range(0,len(train_drugs),batchsz):
                             optimizer.zero_grad()
                             end=min(j+batchsz,len(train_drugs))
                             data=train_drugs[j:end]
                             data2=train_prots[j:end]
                             target=train_Y[j:end]
-                            target=torch.FloatTensor(target)
+                            target=torch.Float1Tensor(target)
                             target=target.cuda()
                             data = torch.tensor(data, dtype=torch.long)
                             data = data.cuda()
