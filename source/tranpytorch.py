@@ -220,7 +220,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
     print(all_predictions)
 
     for foldind in range(len(val_sets)):
-        print("sdsdsd ",foldind)
         valinds = val_sets[foldind]
         labeledinds = labeled_sets[foldind]
 
@@ -242,9 +241,9 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
         train_drugs = np.array(train_drugs)
         train_prots = np.array(train_prots)
         train_Y = np.array(train_Y)
-        train_drugs=train_drugs[:1000]
-        train_prots=train_prots[:1000]
-        train_Y=train_Y[:1000]
+        #train_drugs=train_drugs[:1000]
+        #train_prots=train_prots[:1000]
+        #train_Y=train_Y[:1000]
         terows = label_row_inds[valinds]
         tecols = label_col_inds[valinds]
         # print("terows", str(terows), str(len(terows)))
@@ -254,9 +253,9 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
         val_drugs=np.array(val_drugs)
         val_prots=np.array(val_prots)
         val_Y=np.array(val_Y)
-        val_drugs=val_drugs[:1000]
-        val_prots=val_prots[:1000]
-        val_Y=val_Y[:1000]
+        #val_drugs=val_drugs[:1000]
+        #val_prots=val_prots[:1000]
+        #val_Y=val_Y[:1000]
         pointer = 0
         print(paramset1)
         print(paramset2)
@@ -332,8 +331,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                     all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
                     all_losses[pointer][foldind] = best_vali_loss
                     pointer += 1
-
-    print("done")
     bestperf = -float('Inf')
     bestpointer = None
 
