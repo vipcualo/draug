@@ -322,9 +322,10 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                             best_vali_loss=loss_eval/len(val_drugs)
                             best_predicted_labels=predicted_labels
                         print("epoch ", i, " , train loss ", loss_epoch * 1.0 / len(train_drugs),"  , vali loss ",loss_eval/len(val_drugs))
-                    """
+
                     rperf = prfmeasure(val_Y, best_predicted_labels)
                     rperf = rperf[0]
+                    """
                     print("P1 = %d,  P2 = %d, P3 = %d, Fold = %d, CI-i = %f, MSE = %f" %
                            (param1ind, param2ind, param3ind, foldind, rperf, best_vali_loss))
                     all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
