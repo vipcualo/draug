@@ -431,9 +431,9 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
         val_drugs=np.array(val_drugs)
         val_prots=np.array(val_prots)
         val_Y=np.array(val_Y)
-        val_drugs=val_drugs[:1000]
-        val_prots=val_prots[:1000]
-        val_Y=val_Y[:1000]
+        #val_drugs=val_drugs[:1000]
+        #val_prots=val_prots[:1000]
+        #val_Y=val_Y[:1000]
         pointer = 0
         print(paramset1)
         print(paramset2)
@@ -472,7 +472,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             loss.backward()
                             optimizer.step()
                             loss_epoch+=loss.item()*len(train_drug_batch)
-                        print("epoch ",i," ,loss ",loss_epoch*1.0/len(train_drugs))
                         model.eval()
                         loss_eval=0
                         for j in range(0,int(len(val_drugs)),batchsz):
@@ -494,10 +493,11 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                                     predicted_labels=output.cpu().detach().numpy()
                                 else :
                                     predicted_labels = np.concatenate((predicted_labels, output.cpu().detach().numpy()), 0)
+                            print("epoch ", i, " , train loss ", loss_epoch * 1.0 / len(train_drugs),"  , vali loss ",loss_eval/len(val_drugs))
                     rperf = prfmeasure(val_Y, predicted_labels)
                     rperf = rperf[0]
                     print("P1 = %d,  P2 = %d, P3 = %d, Fold = %d, CI-i = %f, MSE = %f" %
-                           (param1ind, param2ind, param3ind, foldind, rperf, loss))
+                           (param1ind, param2ind, param3ind, foldind, rperf, loss_eval))
                     all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
                     all_losses[pointer][foldind] = loss
                     pointer += 1
