@@ -461,7 +461,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             data2 = torch.tensor(data2, dtype=torch.long)
                             data2 = data2.cuda()
                             output = model(data,data2)
-                            print(output.cpu().numpy())
+                            print(output)
                             loss = criterion(output,target)
                             loss.backward()
                             optimizer.step()
