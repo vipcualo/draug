@@ -419,13 +419,18 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
         XT_train = XT[trcols]
 
         train_drugs, train_prots, train_Y = prepare_interaction_pairs(XD, XT, Y, trrows, trcols)
-
+        train_drugs = np.array(train_drugs)
+        train_prots = np.array(train_prots)
+        train_Y = np.array(train_Y)
         terows = label_row_inds[valinds]
         tecols = label_col_inds[valinds]
         # print("terows", str(terows), str(len(terows)))
         # print("tecols", str(tecols), str(len(tecols)))
 
         val_drugs, val_prots, val_Y = prepare_interaction_pairs(XD, XT, Y, terows, tecols)
+        val_drugs=np.array(val_drugs)
+        val_prots=np.array(val_prots)
+        val_Y=np.array(val_Y)
         val_drugs=val_drugs[:1000]
         val_prots=val_prots[:1000]
         val_Y=val_Y[:1000]
@@ -440,9 +445,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
 
                 for param3ind in range(len(paramset3)):
                     param3value = paramset3[param3ind]
-                    train_drugs=np.array(train_drugs)
-                    train_prots=np.array(train_prots)
-                    train_Y=np.array(train_Y)
+
                     model = Net(param2value, param1value,param3value)
                     print("param ",param2value," ",param1value," ",param3value)
                     model.cuda()
@@ -456,7 +459,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             optimizer.zero_grad()
                             end=min(j+batchsz,len(train_drugs))
                             train_drug_batch=train_drugs[j:end]
-                            train_prot_batch=val_prots[j:end]
+                            train_prot_batch=train_prots[j:end]
                             target=train_Y[j:end]
                             target=torch.FloatTensor(target)
                             target=target.cuda()
@@ -475,7 +478,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         for j in range(0,int(len(val_drugs)),batchsz):
                             end = min(j + batchsz, len(val_drugs))
                             train_drug_batch = val_drugs[j:end]
-                            train_prot_batch = train_prots[j:end]
+                            train_prot_batch = val_prots[j:end]
                             target = val_Y[j:end]
                             target = torch.FloatTensor(target)
                             target = target.cuda()
