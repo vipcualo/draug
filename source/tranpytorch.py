@@ -241,6 +241,9 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
         train_drugs = np.array(train_drugs)
         train_prots = np.array(train_prots)
         train_Y = np.array(train_Y)
+        train_drugs=train_drugs[:1000]
+        train_prots=train_prots[:1000]
+        train_Y=train_Y[:1000]
         terows = label_row_inds[valinds]
         tecols = label_col_inds[valinds]
         # print("terows", str(terows), str(len(terows)))
@@ -268,7 +271,8 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                     model.cuda()
                     criterion = nn.MSELoss()
                     optimizer = optim.Adam(model.parameters(),lr=0.001)
-                    predicted_labels = []
+                    best_predicted_labels = []
+                    best_vali_loss=100000000
                     for i in range(epoch):
                         loss_epoch=0
                         model.train()
@@ -291,6 +295,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                             loss_epoch+=loss.item()*len(train_drug_batch)
                         model.eval()
                         loss_eval=0
+                        predicted_labels=[]
                         for j in range(0,int(len(val_drugs)),batchsz):
                             end = min(j + batchsz, len(val_drugs))
                             train_drug_batch = val_drugs[j:end]
@@ -310,11 +315,14 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                                     predicted_labels=output.cpu().detach().numpy()
                                 else :
                                     predicted_labels = np.concatenate((predicted_labels, output.cpu().detach().numpy()), 0)
+                        if best_vali_loss < (loss_eval/len(val_drugs)):
+                            best_vali_loss=loss_eval/len(val_drugs)
+                            best_predicted_labels=predicted_labels
                         print("epoch ", i, " , train loss ", loss_epoch * 1.0 / len(train_drugs),"  , vali loss ",loss_eval/len(val_drugs))
-                    rperf = prfmeasure(val_Y, predicted_labels)
+                    rperf = prfmeasure(val_Y, best_predicted_labels)
                     rperf = rperf[0]
                     print("P1 = %d,  P2 = %d, P3 = %d, Fold = %d, CI-i = %f, MSE = %f" %
-                           (param1ind, param2ind, param3ind, foldind, rperf, loss_eval/len(val_drugs)))
+                           (param1ind, param2ind, param3ind, foldind, rperf, best_vali_loss))
                     all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
                     all_losses[pointer][foldind] = loss
                     pointer += 1
