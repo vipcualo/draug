@@ -328,8 +328,9 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
 
                     print("P1 = %d,  P2 = %d, P3 = %d, Fold = %d, CI-i = %f, MSE = %f" %
                            (param1ind, param2ind, param3ind, foldind, rperf, best_vali_loss))
+
                     all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
-                    all_losses[pointer][foldind] = loss
+                    all_losses[pointer][foldind] = best_vali_loss
                     pointer += 1
 
     print("done")
