@@ -298,6 +298,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                         loss_eval=0
                         predicted_labels=[]
                         for j in range(0,int(len(val_drugs)),batchsz):
+                            torch.cuda.empty_cache()
                             end = min(j + batchsz, len(val_drugs))
                             train_drug_batch = val_drugs[j:end]
                             train_prot_batch = val_prots[j:end]
@@ -311,6 +312,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                             output = model(train_drug_batch, train_prot_batch)
                             loss = criterion(output, target)
                             loss_eval += loss.item() * len(train_drug_batch)
+                            """
                             if i==(epoch-1):
                                 if len(predicted_labels)==0:
                                     predicted_labels=output.cpu().detach().numpy()
@@ -327,6 +329,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                     all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
                     all_losses[pointer][foldind] = loss
                     pointer += 1
+                    """
     bestperf = -float('Inf')
     bestpointer = None
 
