@@ -461,7 +461,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             data2 = torch.tensor(data2, dtype=torch.long)
                             data2 = data2.cuda()
                             output = model(data,data2)
-                            print(output.cpu().detach().numpy())
                             loss = criterion(output,target)
                             loss.backward()
                             optimizer.step()
@@ -500,9 +499,9 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         target = target.cuda()
                         output = model(data, data2)
                         if len(predicted_labels)==0:
-                            predicted_labels=output.numpy()
+                            predicted_labels=output.cpu().detach().numpy()
                         else :
-                            predicted_labels=np.concatenate((predicted_labels,output.numpy()),-1)
+                            predicted_labels=np.concatenate((predicted_labels,output.cpu().detach().numpy()),-1)
                         loss = criterion(output, target)
                         loss_eval += loss.item() * len(data)
                     print( predicted_labels)
