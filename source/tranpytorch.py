@@ -266,7 +266,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                 param2value = paramset2[param2ind]
                 for param3ind in range(len(paramset3)):
                     param3value = paramset3[param3ind]
-                    torch.cuda.empty_cache()
                     model = Net(param2value, param1value,param3value)
                     print("param ",param2value," ",param1value," ",param3value)
                     model.cuda()
@@ -278,6 +277,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                         loss_epoch=0
                         model.train()
                         for j in range(0,int(len(train_drugs)),batchsz):
+                            torch.cuda.empty_cache()
                             optimizer.zero_grad()
                             end=min(j+batchsz,len(train_drugs))
                             train_drug_batch=train_drugs[j:end]
