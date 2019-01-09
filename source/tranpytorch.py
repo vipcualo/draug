@@ -484,7 +484,30 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             loss = criterion(output, target)
                             loss_eval+=loss.item()*len(data)
                         print("val ",loss_eval*1.0/len(val_drugs))
-
+                    predicted_labels=[]
+                    print("Train xong")
+                    for j in range(0, len(val_drugs), batchsz):
+                        end = min(j + batchsz, len(val_drugs))
+                        data = val_drugs[j:end]
+                        data2 = val_prots[j:end]
+                        data = torch.tensor(data, dtype=torch.long)
+                        data = data.cuda()
+                        data2 = torch.tensor(data2, dtype=torch.long)
+                        data2 = data2.cuda()
+                        target = val_Y[j:end]
+                        target = torch.FloatTensor(target)
+                        target = target.cuda()
+                        output = model(data, data2)
+                        if len(predicted_labels)==0:
+                            predicted_labels=output.numpy()
+                        else :
+                            predicted_labels=np.concatenate((predicted_labels,output.numpy()),-1)
+                        loss = criterion(output, target)
+                        loss_eval += loss.item() * len(data)
+                    print( predicted_labels)
+                    print("val ", loss_eval * 1.0 / len(val_drugs))
+                    rperf = prfmeasure(val_Y, predicted_labels)
+                    rperf = rperf[0]
 
 def cindex_score(y_true, y_pred):
     g = tf.subtract(tf.expand_dims(y_pred, -1), y_pred)
