@@ -257,12 +257,10 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
         print(paramset1)
         print(paramset2)
         print(paramset3)
-        vis = Visualizations()
         for param1ind in range(len(paramset1)):  # hidden neurons
             param1value = paramset1[param1ind]
             for param2ind in range(len(paramset2)):  # learning rate
                 param2value = paramset2[param2ind]
-
                 for param3ind in range(len(paramset3)):
                     param3value = paramset3[param3ind]
                     model = Net(param2value, param1value,param3value)
@@ -271,7 +269,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                     criterion = nn.MSELoss()
                     optimizer = optim.Adam(model.parameters(),lr=0.06)
                     predicted_labels = []
-                    loss_values = []
                     for i in range(epoch):
                         loss_epoch=0
                         model.train()
@@ -292,8 +289,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                             loss.backward()
                             optimizer.step()
                             loss_epoch+=loss.item()*len(train_drug_batch)
-                            loss_values.append(loss.item())
-                        vis.plot_loss(np.mean(loss_values),int( len(train_drugs)/batchsz))
                         model.eval()
                         loss_eval=0
                         for j in range(0,int(len(val_drugs)),batchsz):
@@ -319,7 +314,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                     rperf = prfmeasure(val_Y, predicted_labels)
                     rperf = rperf[0]
                     print("P1 = %d,  P2 = %d, P3 = %d, Fold = %d, CI-i = %f, MSE = %f" %
-                           (param1ind, param2ind, param3ind, foldind, rperf, loss_eval))
+                           (param1ind, param2ind, param3ind, foldind, rperf, loss_eval/len(val_drugs)))
                     all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
                     all_losses[pointer][foldind] = loss
                     pointer += 1
