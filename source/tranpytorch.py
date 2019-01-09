@@ -220,6 +220,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
     print(all_predictions)
 
     for foldind in range(len(val_sets)):
+        print("sdsdsd ",foldind)
         valinds = val_sets[foldind]
         labeledinds = labeled_sets[foldind]
 
