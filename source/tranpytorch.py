@@ -426,7 +426,9 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
         # print("tecols", str(tecols), str(len(tecols)))
 
         val_drugs, val_prots, val_Y = prepare_interaction_pairs(XD, XT, Y, terows, tecols)
-
+        val_drugs=val_drugs[:1000]
+        val_prots=val_prots[:1000]
+        val_Y=val_Y[:1000]
         pointer = 0
         print(paramset1)
         print(paramset2)
@@ -446,69 +448,57 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                     model.cuda()
                     criterion = nn.MSELoss()
                     optimizer = optim.Adam(model.parameters(),lr=0.06)
+                    predicted_labels = []
                     for i in range(epoch):
                         loss_epoch=0
                         model.train()
-                        #st=randint(0,batchsz)
                         for j in range(0,int(len(train_drugs)),batchsz):
                             optimizer.zero_grad()
                             end=min(j+batchsz,len(train_drugs))
-                            data=train_drugs[j:end]
-                            data2=train_prots[j:end]
+                            train_drug_batch=train_drugs[j:end]
+                            train_prot_batch=val_prots[j:end]
                             target=train_Y[j:end]
                             target=torch.FloatTensor(target)
                             target=target.cuda()
-                            data = torch.tensor(data, dtype=torch.long)
-                            data = data.cuda()
-                            data2 = torch.tensor(data2, dtype=torch.long)
-                            data2 = data2.cuda()
-                            output = model(data,data2)
+                            train_drug_batch = torch.tensor(train_drug_batch, dtype=torch.long)
+                            train_drug_batch = train_drug_batch.cuda()
+                            train_prot_batch = torch.tensor(train_prot_batch, dtype=torch.long)
+                            train_prot_batch = train_prot_batch.cuda()
+                            output = model(train_drug_batch,train_prot_batch)
                             loss = criterion(output,target)
                             loss.backward()
                             optimizer.step()
-                            loss_epoch+=loss.item()*len(data)
-
+                            loss_epoch+=loss.item()*len(train_drug_batch)
                         print("epoch ",i," ,loss ",loss_epoch*1.0/len(train_drugs))
                         model.eval()
                         loss_eval=0
                         for j in range(0,int(len(val_drugs)),batchsz):
-                            end=min(j+batchsz,len(val_drugs))
-                            data=val_drugs[j:end]
-                            data2=val_prots[j:end]
-                            data = torch.tensor(data, dtype=torch.long)
-                            data = data.cuda()
-                            data2 = torch.tensor(data2, dtype=torch.long)
-                            data2 = data2.cuda()
-                            target=val_Y[j:end]
+                            end = min(j + batchsz, len(val_drugs))
+                            train_drug_batch = val_drugs[j:end]
+                            train_prot_batch = train_prots[j:end]
+                            target = val_Y[j:end]
                             target = torch.FloatTensor(target)
                             target = target.cuda()
-                            output = model(data,data2)
+                            train_drug_batch = torch.tensor(train_drug_batch, dtype=torch.long)
+                            train_drug_batch = train_drug_batch.cuda()
+                            train_prot_batch = torch.tensor(train_prot_batch, dtype=torch.long)
+                            train_prot_batch = train_prot_batch.cuda()
+                            output = model(train_drug_batch, train_prot_batch)
                             loss = criterion(output, target)
-                            loss_eval+=loss.item()*len(data)
-                        print("val ",loss_eval*1.0/len(val_drugs))
-                    predicted_labels=[]
-                    print("Train xong")
-                    for j in range(0, int(len(val_drugs)), batchsz):
-                        end = min(j + batchsz, len(val_drugs))
-                        data = val_drugs[j:end]
-                        data2 = val_prots[j:end]
-                        data = torch.tensor(data, dtype=torch.long)
-                        data = data.cuda()
-                        data2 = torch.tensor(data2, dtype=torch.long)
-                        data2 = data2.cuda()
-                        target = val_Y[j:end]
-                        target = torch.FloatTensor(target)
-                        target = target.cuda()
-                        output = model(data, data2)
-                        if len(predicted_labels)==0:
-                            predicted_labels=output.cpu().detach().numpy()
-                        else :
-                            predicted_labels=np.concatenate((predicted_labels,output.cpu().detach().numpy()),0)
-                        loss = criterion(output, target)
-                        loss_eval += loss.item() * len(data)
-                    print("val ", loss_eval * 1.0 / len(val_drugs))
+                            loss_eval += loss.item() * len(train_drug_batch)
+                            if i==(epoch-1):
+                                if len(predicted_labels)==0:
+                                    predicted_labels=output.cpu().detach().numpy()
+                                else :
+                                    predicted_labels = np.concatenate((predicted_labels, output.cpu().detach().numpy()), 0)
                     rperf = prfmeasure(val_Y, predicted_labels)
                     rperf = rperf[0]
+                    print("P1 = %d,  P2 = %d, P3 = %d, Fold = %d, CI-i = %f, MSE = %f" %
+                           (param1ind, param2ind, param3ind, foldind, rperf, loss))
+                    all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
+                    all_losses[pointer][foldind] = loss
+                    pointer += 1
+
 
 def cindex_score(y_true, y_pred):
     g = tf.subtract(tf.expand_dims(y_pred, -1), y_pred)
