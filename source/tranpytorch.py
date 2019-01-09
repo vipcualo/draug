@@ -312,7 +312,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                             output = model(train_drug_batch, train_prot_batch)
                             loss = criterion(output, target)
                             loss_eval += loss.item() * len(train_drug_batch)
-                            """
                             if i==(epoch-1):
                                 if len(predicted_labels)==0:
                                     predicted_labels=output.cpu().detach().numpy()
@@ -329,7 +328,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                     all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
                     all_losses[pointer][foldind] = loss
                     pointer += 1
-                    """
     bestperf = -float('Inf')
     bestpointer = None
 
