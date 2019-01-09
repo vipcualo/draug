@@ -501,7 +501,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         if len(predicted_labels)==0:
                             predicted_labels=output.cpu().detach().numpy()
                         else :
-                            predicted_labels=np.concatenate((predicted_labels,output.cpu().detach().numpy()),1)
+                            predicted_labels=np.concatenate((predicted_labels,output.cpu().detach().numpy()),0)
                         loss = criterion(output, target)
                         loss_eval += loss.item() * len(data)
                     print( predicted_labels)
