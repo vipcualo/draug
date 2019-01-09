@@ -30,23 +30,6 @@ from datahelper import *
 # import logging
 from itertools import product
 from arguments import argparser, logging
-
-import keras
-from keras.models import Model
-from keras.preprocessing import sequence
-from keras.models import Sequential, load_model
-from keras.layers import Dense, Dropout, Activation
-from keras.layers import Embedding
-from keras.layers import Conv1D, GlobalMaxPooling1D, MaxPooling1D
-from keras.layers.normalization import BatchNormalization
-from keras.layers import Conv2D, GRU
-from keras.layers import Input, Embedding, LSTM, Dense, TimeDistributed, Masking, RepeatVector, merge, Flatten
-from keras.models import Model
-from keras.utils import plot_model
-from keras.layers import Bidirectional
-from keras.callbacks import ModelCheckpoint, EarlyStopping
-from keras import optimizers, layers
-
 import sys, pickle, os
 import math, json, time
 import decimal
@@ -56,199 +39,36 @@ from random import shuffle
 from copy import deepcopy
 from sklearn import preprocessing
 from emetrics import get_aupr, get_cindex, get_rm2
+from datetime import datetime
+import visdom
+class Visualizations:
+    def __init__(self, env_name=None):
+        if env_name is None:
+            env_name = str(datetime.now().strftime("%d-%m %Hh%M"))
+        self.env_name = env_name
+        self.vis = visdom.Visdom(env=self.env_name)
+        self.loss_win = None
+
+    def plot_loss(self, loss, step):
+        self.loss_win = self.vis.line(
+            [loss],
+            [step],
+            win=self.loss_win,
+            update='append' if self.loss_win else None,
+            opts=dict(
+                xlabel='Step',
+                ylabel='Loss',
+                title='Loss (mean per 10 steps)',
+            )
+        )
 
 TABSY = "\t"
 figdir = "figures/"
 
 
-def build_combined_onehot(FLAGS, NUM_FILTERS, FILTER_LENGTH1, FILTER_LENGTH2):
-    XDinput = Input(shape=(FLAGS.max_smi_len, FLAGS.charsmiset_size))
-    XTinput = Input(shape=(FLAGS.max_seq_len, FLAGS.charseqset_size))
-
-    encode_smiles = Conv1D(filters=NUM_FILTERS, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                           strides=1)(XDinput)
-    encode_smiles = Conv1D(filters=NUM_FILTERS * 2, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                           strides=1)(encode_smiles)
-    encode_smiles = Conv1D(filters=NUM_FILTERS * 3, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                           strides=1)(encode_smiles)
-    encode_smiles = GlobalMaxPooling1D()(encode_smiles)  # pool_size=pool_length[i]
-
-    encode_protein = Conv1D(filters=NUM_FILTERS, kernel_size=FILTER_LENGTH2, activation='relu', padding='valid',
-                            strides=1)(XTinput)
-    encode_protein = Conv1D(filters=NUM_FILTERS * 2, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                            strides=1)(encode_protein)
-    encode_protein = Conv1D(filters=NUM_FILTERS * 3, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                            strides=1)(encode_protein)
-    encode_protein = GlobalMaxPooling1D()(encode_protein)
-
-    encode_interaction = keras.layers.concatenate([encode_smiles, encode_protein])
-    # encode_interaction = keras.layers.concatenate([encode_smiles, encode_protein], axis=-1) #merge.Add()([encode_smiles, encode_protein])
-
-    # Fully connected
-    FC1 = Dense(1024, activation='relu')(encode_interaction)
-    FC2 = Dropout(0.1)(FC1)
-    FC2 = Dense(1024, activation='relu')(FC2)
-    FC2 = Dropout(0.1)(FC2)
-    FC2 = Dense(512, activation='relu')(FC2)
-
-    predictions = Dense(1, kernel_initializer='normal')(FC2)
-
-    interactionModel = Model(inputs=[XDinput, XTinput], outputs=[predictions])
-    interactionModel.compile(optimizer='adam', loss='mean_squared_error',
-                             metrics=[cindex_score])  # , metrics=['cindex_score']
-
-    print(interactionModel.summary())
-    plot_model(interactionModel, to_file='figures/build_combined_onehot.png')
-
-    return interactionModel
 
 
-def build_combined_categorical(FLAGS, NUM_FILTERS, FILTER_LENGTH1, FILTER_LENGTH2):
-    print("hihi ", FLAGS.charsmiset_size + 1)
-    print("haha ", FLAGS.max_smi_len)
-    XDinput = Input(shape=(FLAGS.max_smi_len,), dtype='int32')  ### Buralar flagdan gelmeliii
-    XTinput = Input(shape=(FLAGS.max_seq_len,), dtype='int32')
-
-    ### SMI_EMB_DINMS  FLAGS GELMELII
-    encode_smiles = Embedding(input_dim=FLAGS.charsmiset_size + 1, output_dim=128, input_length=FLAGS.max_smi_len)(
-        XDinput)
-    encode_smiles = Conv1D(filters=NUM_FILTERS, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                           strides=1)(encode_smiles)
-    encode_smiles = Conv1D(filters=NUM_FILTERS * 2, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                           strides=1)(encode_smiles)
-    encode_smiles = Conv1D(filters=NUM_FILTERS * 3, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                           strides=1)(encode_smiles)
-    encode_smiles = GlobalMaxPooling1D()(encode_smiles)
-
-    encode_protein = Embedding(input_dim=FLAGS.charseqset_size + 1, output_dim=128, input_length=FLAGS.max_seq_len)(
-        XTinput)
-    encode_protein = Conv1D(filters=NUM_FILTERS, kernel_size=FILTER_LENGTH2, activation='relu', padding='valid',
-                            strides=1)(encode_protein)
-    encode_protein = Conv1D(filters=NUM_FILTERS * 2, kernel_size=FILTER_LENGTH2, activation='relu', padding='valid',
-                            strides=1)(encode_protein)
-    encode_protein = Conv1D(filters=NUM_FILTERS * 3, kernel_size=FILTER_LENGTH2, activation='relu', padding='valid',
-                            strides=1)(encode_protein)
-    encode_protein = GlobalMaxPooling1D()(encode_protein)
-
-    encode_interaction = keras.layers.concatenate([encode_smiles, encode_protein],
-                                                  axis=-1)  # merge.Add()([encode_smiles, encode_protein])
-
-    # Fully connected
-    FC1 = Dense(1024, activation='relu')(encode_interaction)
-    FC2 = Dropout(0.1)(FC1)
-    FC2 = Dense(1024, activation='relu')(FC2)
-    FC2 = Dropout(0.1)(FC2)
-    FC2 = Dense(512, activation='relu')(FC2)
-
-    # And add a logistic regression on top
-    predictions = Dense(1, kernel_initializer='normal')(
-        FC2)  # OR no activation, rght now it's between 0-1, do I want this??? activation='sigmoid'
-
-    interactionModel = Model(inputs=[XDinput, XTinput], outputs=[predictions])
-
-    interactionModel.compile(optimizer='adam', loss='mean_squared_error',
-                             metrics=[cindex_score])  # , metrics=['cindex_score']
-    print(interactionModel.summary())
-    # plot_model(interactionModel, to_file='figures/build_combined_categorical.png')
-
-    return interactionModel
-
-
-def build_single_drug(FLAGS, NUM_FILTERS, FILTER_LENGTH1, FILTER_LENGTH2):
-    interactionModel = Sequential()
-    XTmodel = Sequential()
-    XTmodel.add(Activation('linear', input_shape=(FLAGS.target_count,)))
-
-    encode_smiles = Sequential()
-    encode_smiles.add(Embedding(input_dim=FLAGS.charsmiset_size + 1, output_dim=128, input_length=FLAGS.max_smi_len))
-    encode_smiles.add(Conv1D(filters=NUM_FILTERS, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                             strides=1))  # input_shape=(MAX_SMI_LEN, SMI_EMBEDDING_DIMS)
-    encode_smiles.add(
-        Conv1D(filters=NUM_FILTERS * 2, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid', strides=1))
-    encode_smiles.add(
-        Conv1D(filters=NUM_FILTERS * 3, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid', strides=1))
-    encode_smiles.add(GlobalMaxPooling1D())
-
-    interactionModel.add(Merge([encode_smiles, XTmodel], mode='concat', concat_axis=1))
-    # interactionModel.add(layers.merge.Concatenate([XDmodel, XTmodel]))
-
-    # Fully connected
-    interactionModel.add(Dense(1024, activation='relu'))  # 1024
-    interactionModel.add(Dropout(0.1))
-    interactionModel.add(Dense(1024, activation='relu'))  # 1024
-    interactionModel.add(Dropout(0.1))
-    interactionModel.add(Dense(512, activation='relu'))
-
-    interactionModel.add(Dense(1, kernel_initializer='normal'))
-    interactionModel.compile(optimizer='adam', loss='mean_squared_error', metrics=[cindex_score])
-
-    print(interactionModel.summary())
-    plot_model(interactionModel, to_file='figures/build_single_drug.png')
-
-    return interactionModel
-
-
-def build_single_prot(FLAGS, NUM_FILTERS, FILTER_LENGTH1, FILTER_LENGTH2):
-    interactionModel = Sequential()
-    XDmodel = Sequential()
-    XDmodel.add(Activation('linear', input_shape=(FLAGS.drugcount,)))
-
-    XTmodel1 = Sequential()
-    XTmodel1.add(Embedding(input_dim=FLAGS.charseqset_size + 1, output_dim=128, input_length=FLAGS.max_seq_len))
-    XTmodel1.add(Conv1D(filters=NUM_FILTERS, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid',
-                        strides=1))  # input_shape=(MAX_SEQ_LEN, SEQ_EMBEDDING_DIMS)
-    XTmodel1.add(
-        Conv1D(filters=NUM_FILTERS * 2, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid', strides=1))
-    XTmodel1.add(
-        Conv1D(filters=NUM_FILTERS * 3, kernel_size=FILTER_LENGTH1, activation='relu', padding='valid', strides=1))
-    XTmodel1.add(GlobalMaxPooling1D())
-
-    interactionModel.add(Merge([XDmodel, XTmodel1], mode='concat', concat_axis=1))
-
-    # Fully connected
-    interactionModel.add(Dense(1024, activation='relu'))
-    interactionModel.add(Dropout(0.1))
-    interactionModel.add(Dense(1024, activation='relu'))
-    interactionModel.add(Dropout(0.1))
-    interactionModel.add(Dense(512, activation='relu'))
-
-    interactionModel.add(Dense(1, kernel_initializer='normal'))
-    interactionModel.compile(optimizer='adam', loss='mean_squared_error', metrics=[cindex_score])
-
-    print(interactionModel.summary())
-    plot_model(interactionModel, to_file='figures/build_single_protein.png')
-
-    return interactionModel
-
-
-def build_baseline(FLAGS, NUM_FILTERS, FILTER_LENGTH1, FILTER_LENGTH2):
-    interactionModel = Sequential()
-
-    XDmodel = Sequential()
-    XDmodel.add(Dense(1, activation='linear', input_shape=(FLAGS.drug_count,)))
-
-    XTmodel = Sequential()
-    XTmodel.add(Dense(1, activation='linear', input_shape=(FLAGS.target_count,)))
-
-    interactionModel.add(Merge([XDmodel, XTmodel], mode='concat', concat_axis=1))
-
-    # Fully connected
-    interactionModel.add(Dense(1024, activation='relu'))
-    interactionModel.add(Dropout(0.1))
-    interactionModel.add(Dense(1024, activation='relu'))
-    interactionModel.add(Dropout(0.1))
-    interactionModel.add(Dense(512, activation='relu'))
-
-    interactionModel.add(Dense(1, kernel_initializer='normal'))
-    interactionModel.compile(optimizer='adam', loss='mean_squared_error', metrics=[cindex_score])
-
-    print(interactionModel.summary())
-    plot_model(interactionModel, to_file='figures/build_baseline.png')
-
-    return interactionModel
-
-
-def nfold_1_2_3_setting_sample(XD, XT, Y, label_row_inds, label_col_inds, measure, runmethod, FLAGS, dataset):
+def nfold_1_2_3_setting_sample(XD, XT, Y, label_row_inds, label_col_inds, measure, FLAGS, dataset):
     bestparamlist = []
     test_set, outer_train_sets = dataset.read_sets(FLAGS.dataset_path, FLAGS.problem_type)
 
@@ -275,7 +95,7 @@ def nfold_1_2_3_setting_sample(XD, XT, Y, label_row_inds, label_col_inds, measur
                                                                                                           label_row_inds,
                                                                                                           label_col_inds,
                                                                                                           measure,
-                                                                                                          runmethod,
+
                                                                                                           FLAGS,
                                                                                                           train_sets,
                                                                                                           val_sets)
@@ -284,7 +104,7 @@ def nfold_1_2_3_setting_sample(XD, XT, Y, label_row_inds, label_col_inds, measur
     # print("Outer Train Set len", str(len(outer_train_sets)))
     bestparam, best_param_list, bestperf, all_predictions, all_losses = general_nfold_cv(XD, XT, Y, label_row_inds,
                                                                                          label_col_inds,
-                                                                                         measure, runmethod, FLAGS,
+                                                                                         measure, FLAGS,
                                                                                          train_sets, test_sets)
 
     testperf = all_predictions[bestparamind]  ##pointer pos
@@ -351,20 +171,19 @@ class Net(nn.Module):
 
     def forward(self, XDinput,XTinput):
         #print(XDinput)
-        Embedding1=self.embeddingXD(XDinput)
-        Embedding3 = Embedding1
-        Embedding1 = torch.transpose(Embedding1,2,1)
+        XDinput=self.embeddingXD(XDinput)
+        XDinput = torch.transpose(XDinput,2,1)
         #print(Embedding.shape)
-        encode_smiles=F.relu(self.conv1XD(Embedding1))
+        encode_smiles=F.relu(self.conv1XD(XDinput))
         encode_smiles = F.relu(self.conv2XD(encode_smiles))
         encode_smiles = F.relu(self.conv3XD(encode_smiles))
         #print(encode_smiles.shape)
         encode_smiles = F.max_pool1d(encode_smiles, kernel_size=encode_smiles.size()[2:])
         encode_smiles = encode_smiles.view(encode_smiles.shape[0], encode_smiles.shape[1])
         #encode_smiles = torch.mean(encode_smiles.view(encode_smiles.size(0), encode_smiles.size(1), -1), dim=2)
-        Embedding = self.embeddingXT(XTinput)
-        Embedding = torch.transpose(Embedding, 2, 1)
-        encode_protein = F.relu(self.conv1XT(Embedding))
+        XTinput = self.embeddingXT(XTinput)
+        XTinput = torch.transpose(XTinput, 2, 1)
+        encode_protein = F.relu(self.conv1XT(XTinput))
         encode_protein = F.relu(self.conv2XT(encode_protein))
         encode_protein = F.relu(self.conv3XT(encode_protein))
         #encode_protein = torch.mean(encode_protein.view(encode_protein.size(0), encode_protein.size(1), -1), dim=2)
@@ -382,7 +201,7 @@ class Net(nn.Module):
 
 
 
-def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runmethod, FLAGS, labeled_sets,
+def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAGS, labeled_sets,
                      val_sets):  ## BURAYA DA FLAGS LAZIM????
 
     paramset1 = FLAGS.num_windows  # [32]#[32,  512] #[32, 128]  # filter numbers
@@ -431,13 +250,14 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
         val_drugs=np.array(val_drugs)
         val_prots=np.array(val_prots)
         val_Y=np.array(val_Y)
-        #val_drugs=val_drugs[:1000]
-        #val_prots=val_prots[:1000]
-        #val_Y=val_Y[:1000]
+        val_drugs=val_drugs[:1000]
+        val_prots=val_prots[:1000]
+        val_Y=val_Y[:1000]
         pointer = 0
         print(paramset1)
         print(paramset2)
         print(paramset3)
+        vis = Visualizations()
         for param1ind in range(len(paramset1)):  # hidden neurons
             param1value = paramset1[param1ind]
             for param2ind in range(len(paramset2)):  # learning rate
@@ -445,13 +265,13 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
 
                 for param3ind in range(len(paramset3)):
                     param3value = paramset3[param3ind]
-
                     model = Net(param2value, param1value,param3value)
                     print("param ",param2value," ",param1value," ",param3value)
                     model.cuda()
                     criterion = nn.MSELoss()
                     optimizer = optim.Adam(model.parameters(),lr=0.06)
                     predicted_labels = []
+                    loss_values = []
                     for i in range(epoch):
                         loss_epoch=0
                         model.train()
@@ -472,6 +292,8 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             loss.backward()
                             optimizer.step()
                             loss_epoch+=loss.item()*len(train_drug_batch)
+                            loss_values.append(loss.item())
+                        vis.plot_loss(np.mean(loss_values),int( len(train_drugs)/batchsz))
                         model.eval()
                         loss_eval=0
                         for j in range(0,int(len(val_drugs)),batchsz):
@@ -493,7 +315,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                                     predicted_labels=output.cpu().detach().numpy()
                                 else :
                                     predicted_labels = np.concatenate((predicted_labels, output.cpu().detach().numpy()), 0)
-                            print("epoch ", i, " , train loss ", loss_epoch * 1.0 / len(train_drugs),"  , vali loss ",loss_eval/len(val_drugs))
+                        print("epoch ", i, " , train loss ", loss_epoch * 1.0 / len(train_drugs),"  , vali loss ",loss_eval/len(val_drugs))
                     rperf = prfmeasure(val_Y, predicted_labels)
                     rperf = rperf[0]
                     print("P1 = %d,  P2 = %d, P3 = %d, Fold = %d, CI-i = %f, MSE = %f" %
@@ -564,7 +386,7 @@ def prepare_interaction_pairs(XD, XT, Y, rows, cols):
     return drug_data, target_data, affinity
 
 
-def experiment(FLAGS, perfmeasure, deepmethod, foldcount=6):  # 5-fold cross validation + test
+def experiment(FLAGS, perfmeasure, foldcount=6):  # 5-fold cross validation + test
 
     # Input
     # XD: [drugs, features] sized array (features may also be similarities with other drugs
@@ -606,7 +428,7 @@ def experiment(FLAGS, perfmeasure, deepmethod, foldcount=6):  # 5-fold cross val
 
     print(FLAGS.log_dir)
     S1_avgperf, S1_avgloss, S1_teststd = nfold_1_2_3_setting_sample(XD, XT, Y, label_row_inds, label_col_inds,
-                                                                    perfmeasure, deepmethod, FLAGS, dataset)
+                                                                    perfmeasure, FLAGS, dataset)
 
     logging("Setting " + str(FLAGS.problem_type), FLAGS)
     logging("avg_perf = %.5f,  avg_mse = %.5f, std = %.5f" %
@@ -615,9 +437,7 @@ def experiment(FLAGS, perfmeasure, deepmethod, foldcount=6):  # 5-fold cross val
 
 def run_regression(FLAGS):
     perfmeasure = get_cindex
-    deepmethod = build_combined_categorical
-
-    experiment(FLAGS, perfmeasure, deepmethod)
+    experiment(FLAGS, perfmeasure)
 
 
 if __name__ == "__main__":
