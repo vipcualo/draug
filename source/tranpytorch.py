@@ -450,7 +450,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         loss_epoch=0
                         model.train()
                         #st=randint(0,batchsz)
-                        for j in range(0,len(train_drugs)/10,batchsz):
+                        for j in range(0,int(len(train_drugs)/10),batchsz):
                             optimizer.zero_grad()
                             end=min(j+batchsz,len(train_drugs))
                             data=train_drugs[j:end]
@@ -471,7 +471,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         print("epoch ",i," ,loss ",loss_epoch*1.0/len(train_drugs))
                         model.eval()
                         loss_eval=0
-                        for j in range(0,len(val_drugs)/10,batchsz):
+                        for j in range(0,int(len(val_drugs)/10),batchsz):
                             end=min(j+batchsz,len(val_drugs))
                             data=val_drugs[j:end]
                             data2=val_prots[j:end]
@@ -488,7 +488,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         print("val ",loss_eval*1.0/len(val_drugs))
                     predicted_labels=[]
                     print("Train xong")
-                    for j in range(0, len(val_drugs)/10, batchsz):
+                    for j in range(0, int(len(val_drugs)/10), batchsz):
                         end = min(j + batchsz, len(val_drugs))
                         data = val_drugs[j:end]
                         data2 = val_prots[j:end]
