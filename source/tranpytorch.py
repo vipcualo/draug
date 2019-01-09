@@ -318,7 +318,30 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                     all_predictions[pointer][foldind] = rperf  # TODO FOR EACH VAL SET allpredictions[pointer][foldind]
                     all_losses[pointer][foldind] = loss
                     pointer += 1
+    bestperf = -float('Inf')
+    bestpointer = None
 
+    best_param_list = []
+    ##Take average according to folds, then chooose best params
+    pointer = 0
+    for param1ind in range(len(paramset1)):
+        for param2ind in range(len(paramset2)):
+            for param3ind in range(len(paramset3)):
+
+                avgperf = 0.
+                for foldind in range(len(val_sets)):
+                    foldperf = all_predictions[pointer][foldind]
+                    avgperf += foldperf
+                avgperf /= len(val_sets)
+                # print(epoch, batchsz, avgperf)
+                if avgperf > bestperf:
+                    bestperf = avgperf
+                    bestpointer = pointer
+                    best_param_list = [param1ind, param2ind, param3ind]
+
+                pointer += 1
+
+    return bestpointer, best_param_list, bestperf, all_predictions, all_losses
 
 def cindex_score(y_true, y_pred):
     g = tf.subtract(tf.expand_dims(y_pred, -1), y_pred)
