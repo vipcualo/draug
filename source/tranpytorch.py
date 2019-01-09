@@ -109,9 +109,9 @@ def nfold_1_2_3_setting_sample(XD, XT, Y, label_row_inds, label_col_inds, measur
 
     testperf = all_predictions[bestparamind]  ##pointer pos
 
-    logging("---FINAL RESULTS-----", FLAGS)
-    logging("best param index = %s,  best param = %.5f" %
-            (bestparamind, bestparam), FLAGS)
+    print("---FINAL RESULTS-----")
+    print("best param index = %s,  best param = %.5f" %
+            (bestparamind, bestparam))
 
     testperfs = []
     testloss = []
@@ -129,10 +129,10 @@ def nfold_1_2_3_setting_sample(XD, XT, Y, label_row_inds, label_col_inds, measur
     avgloss = np.mean(testloss)
     teststd = np.std(testperfs)
 
-    logging("Test Performance CI", FLAGS)
-    logging(testperfs, FLAGS)
-    logging("Test Performance MSE", FLAGS)
-    logging(testloss, FLAGS)
+    print("Test Performance CI", FLAGS)
+    print(testperfs, FLAGS)
+    print("Test Performance MSE", FLAGS)
+    print(testloss)
 
     return avgperf, avgloss, teststd
 
@@ -267,7 +267,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                     print("param ",param2value," ",param1value," ",param3value)
                     model.cuda()
                     criterion = nn.MSELoss()
-                    optimizer = optim.Adam(model.parameters(),lr=0.06)
+                    optimizer = optim.Adam(model.parameters(),lr=0.001)
                     predicted_labels = []
                     for i in range(epoch):
                         loss_epoch=0
@@ -355,32 +355,6 @@ def cindex_score(y_true, y_pred):
 
     return tf.where(tf.equal(g, 0), 0.0, g / f)  # select
 
-
-def plotLoss(history, batchind, epochind, param3ind, foldind):
-    figname = "b" + str(batchind) + "_e" + str(epochind) + "_" + str(param3ind) + "_" + str(foldind) + "_" + str(
-        time.time())
-    plt.figure()
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    # plt.legend(['trainloss', 'valloss', 'cindex', 'valcindex'], loc='upper left')
-    plt.legend(['trainloss', 'valloss'], loc='upper left')
-    plt.savefig("figures/" + figname + ".png", dpi=None, facecolor='w', edgecolor='w', orientation='portrait',
-                papertype=None, format=None, transparent=False, bbox_inches=None, pad_inches=0.1, frameon=None)
-    plt.close()
-
-    ## PLOT CINDEX
-    plt.figure()
-    plt.title('model concordance index')
-    plt.ylabel('cindex')
-    plt.xlabel('epoch')
-    plt.plot(history.history['cindex_score'])
-    plt.plot(history.history['val_cindex_score'])
-    plt.legend(['traincindex', 'valcindex'], loc='upper left')
-    plt.savefig("figures/" + figname + "_acc.png", dpi=None, facecolor='w', edgecolor='w', orientation='portrait',
-                papertype=None, format=None, transparent=False, bbox_inches=None, pad_inches=0.1, frameon=None)
 
 
 def prepare_interaction_pairs(XD, XT, Y, rows, cols):
