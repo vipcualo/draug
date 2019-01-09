@@ -315,7 +315,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                                     predicted_labels=output.cpu().detach().numpy()
                                 else :
                                     predicted_labels = np.concatenate((predicted_labels, output.cpu().detach().numpy()), 0)
-                        if best_vali_loss < (loss_eval/len(val_drugs)):
+                        if best_vali_loss > (loss_eval/len(val_drugs)):
                             best_vali_loss=loss_eval/len(val_drugs)
                             best_predicted_labels=predicted_labels
                         print("epoch ", i, " , train loss ", loss_epoch * 1.0 / len(train_drugs),"  , vali loss ",loss_eval/len(val_drugs))
