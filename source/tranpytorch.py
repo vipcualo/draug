@@ -428,7 +428,9 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
         val_drugs, val_prots, val_Y = prepare_interaction_pairs(XD, XT, Y, terows, tecols)
 
         pointer = 0
-
+        print(paramset1)
+        print(paramset2)
+        print(paramset3)
         for param1ind in range(len(paramset1)):  # hidden neurons
             param1value = paramset1[param1ind]
             for param2ind in range(len(paramset2)):  # learning rate
@@ -448,7 +450,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         loss_epoch=0
                         model.train()
                         #st=randint(0,batchsz)
-                        for j in range(0,len(train_drugs),batchsz):
+                        for j in range(0,len(train_drugs)/10,batchsz):
                             optimizer.zero_grad()
                             end=min(j+batchsz,len(train_drugs))
                             data=train_drugs[j:end]
@@ -469,7 +471,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         print("epoch ",i," ,loss ",loss_epoch*1.0/len(train_drugs))
                         model.eval()
                         loss_eval=0
-                        for j in range(0,len(val_drugs),batchsz):
+                        for j in range(0,len(val_drugs)/10,batchsz):
                             end=min(j+batchsz,len(val_drugs))
                             data=val_drugs[j:end]
                             data2=val_prots[j:end]
@@ -486,7 +488,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                         print("val ",loss_eval*1.0/len(val_drugs))
                     predicted_labels=[]
                     print("Train xong")
-                    for j in range(0, len(val_drugs), batchsz):
+                    for j in range(0, len(val_drugs)/10, batchsz):
                         end = min(j + batchsz, len(val_drugs))
                         data = val_drugs[j:end]
                         data2 = val_prots[j:end]
@@ -504,7 +506,6 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, runm
                             predicted_labels=np.concatenate((predicted_labels,output.cpu().detach().numpy()),0)
                         loss = criterion(output, target)
                         loss_eval += loss.item() * len(data)
-                    print( predicted_labels)
                     print("val ", loss_eval * 1.0 / len(val_drugs))
                     rperf = prfmeasure(val_Y, predicted_labels)
                     rperf = rperf[0]
