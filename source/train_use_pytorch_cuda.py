@@ -227,6 +227,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                             train_prot_batch = torch.tensor(train_prot_batch, dtype=torch.long) # chuyển numpy array thanh tensor
                             train_prot_batch = train_prot_batch.cuda() # chuyển sang tensor cuda
                             output = model(train_drug_batch,train_prot_batch) # tính y dự đoán ( forward)
+                            target = target.view(target.shape[0], 1)
                             loss = criterion(output,target) # tính loss step
                             loss.backward() # tính gradisent trên từng parameter
                             optimizer.step() # back propagation
@@ -246,6 +247,7 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
                             vali_prot_batch = torch.tensor(vali_prot_batch, dtype=torch.long) # chuyển numpy array thanh tensor
                             vali_prot_batch = vali_prot_batch.cuda() # chuyển sang tensor cuda
                             output = model(vali_drug_batch, vali_prot_batch) # tính y dự đoán ( forward)
+                            target = target.view(target.shape[0], 1)
                             loss = criterion(output, target) # tính loss step
                             loss_eval += loss.item() * len(vali_drug_batch) # cộng loss từng step cho loss theo epoch
                             if len(predicted_labels)==0: # lưu toạn bộ y dự đoán
