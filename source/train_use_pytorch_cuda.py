@@ -35,8 +35,6 @@ def nfold_1_2_3_setting_sample(XD, XT, Y, label_row_inds, label_col_inds, measur
     ## TRAIN AND VAL
     val_sets = []
     train_sets = []
-
-    # logger.info('Start training')
     # phan chia du lieu thanh training, testing v
     for val_foldind in range(foldinds):
         val_fold = outer_train_sets[val_foldind]
@@ -183,18 +181,18 @@ def general_nfold_cv(XD, XT, Y, label_row_inds, label_col_inds, prfmeasure, FLAG
         train_drugs = np.array(train_drugs)
         train_prots = np.array(train_prots)
         train_Y = np.array(train_Y)
-        #train_drugs=train_drugs[:1000]
-        #train_prots=train_prots[:1000]
-        #train_Y=train_Y[:1000]
+        train_drugs=train_drugs[:1000]
+        train_prots=train_prots[:1000]
+        train_Y=train_Y[:1000]
         terows = label_row_inds[valinds]
         tecols = label_col_inds[valinds]
         val_drugs, val_prots, val_Y = prepare_interaction_pairs(XD, XT, Y, terows, tecols)
         val_drugs=np.array(val_drugs)
         val_prots=np.array(val_prots)
         val_Y=np.array(val_Y)
-        #val_drugs=val_drugs[:1000]
-        #val_prots=val_prots[:1000]
-        #val_Y=val_Y[:1000]
+        val_drugs=val_drugs[:1000]
+        val_prots=val_prots[:1000]
+        val_Y=val_Y[:1000]
         pointer = 0
         print(paramset1)
         print(paramset2)
