@@ -1,4 +1,4 @@
-python run_experiments.py --num_windows 32 \
+python train_use_pytorch_cpu.py --num_windows 32 \
                           --seq_window_lengths 8 12 \
                           --smi_window_lengths 4 8 \
                           --batch_size 256 \
