@@ -1,0 +1,965 @@
+Using TensorFlow backend.
+2019-01-10 09:56:50.709261: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-01-10 09:56:57.360484: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: GeForce GTX 1080 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.6325
+pciBusID: 0000:84:00.0
+totalMemory: 10.91GiB freeMemory: 10.75GiB
+2019-01-10 09:56:57.360564: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2019-01-10 09:56:57.840145: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-01-10 09:56:57.840218: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2019-01-10 09:56:57.840231: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2019-01-10 09:56:57.840602: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10400 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:84:00.0, compute capability: 6.1)
+Reading data/kiba/ start
+Read data/kiba/ start
+2111
+229
+tmp1545016336.2369363/
+Reading data/kiba/ start
+val set 19709
+train set 78836
+val set 19709
+train set 78836
+val set 19709
+train set 78836
+val set 19709
+train set 78836
+val set 19709
+train set 78836
+[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+[32]
+[4, 8]
+[8, 12]
+tranpytorch.py:148: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.conv1XD.weight)
+tranpytorch.py:150: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.conv2XD.weight)
+tranpytorch.py:152: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.conv3XD.weight)
+tranpytorch.py:156: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.conv1XT.weight)
+tranpytorch.py:158: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.conv2XT.weight)
+tranpytorch.py:160: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.conv3XT.weight)
+tranpytorch.py:163: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.fc1.weight)
+tranpytorch.py:165: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.fc2.weight)
+tranpytorch.py:167: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.fc3.weight)
+tranpytorch.py:169: UserWarning: nn.init.normal is now deprecated in favor of nn.init.normal_.
+  torch.nn.init.normal(self.fc4.weight)
+param  4   32   8
+epoch  0  , train loss  24.32769196018901   , vali loss  1.5137317193335331
+epoch  1  , train loss  0.843217520334809   , vali loss  1.9678123977740876
+epoch  2  , train loss  0.8034732543119915   , vali loss  2.491247229915067
+epoch  3  , train loss  0.786267460813938   , vali loss  2.1469988249542085
+epoch  4  , train loss  0.7786005995965414   , vali loss  2.7224661819926013
+epoch  5  , train loss  0.7705777917612789   , vali loss  2.5835883871073944
+epoch  6  , train loss  0.7689127199175247   , vali loss  2.1551102438233833
+epoch  7  , train loss  0.7645824967384387   , vali loss  1.8499226791866294
+epoch  8  , train loss  0.7565167375886886   , vali loss  2.117285012690781
+epoch  9  , train loss  0.7501500876982091   , vali loss  2.3514144252234384
+epoch  10  , train loss  0.7494164488771516   , vali loss  2.081133226540494
+epoch  11  , train loss  0.7468074700913295   , vali loss  2.0080852442011756
+epoch  12  , train loss  0.7433552245183093   , vali loss  1.8323329637702532
+epoch  13  , train loss  0.7393882990524561   , vali loss  1.7112436675609255
+epoch  14  , train loss  0.7392009969679174   , vali loss  1.5169771986045433
+epoch  15  , train loss  0.7376518007391476   , vali loss  1.4066119318992145
+epoch  16  , train loss  0.7359881837217163   , vali loss  1.5283885397464212
+epoch  17  , train loss  0.7332536206106791   , vali loss  1.5494141337219405
+epoch  18  , train loss  0.7311576692092315   , vali loss  1.4992240292579957
+epoch  19  , train loss  0.7281713741265619   , vali loss  1.4972548134898274
+epoch  20  , train loss  0.7263928038283167   , vali loss  1.3372430981696484
+epoch  21  , train loss  0.7234705417382069   , vali loss  1.1520482713128946
+epoch  22  , train loss  0.7249639084866689   , vali loss  0.9858592088572468
+epoch  23  , train loss  0.7215903243902908   , vali loss  0.8515142634600965
+epoch  24  , train loss  0.7208842905309624   , vali loss  0.7853465142681438
+epoch  25  , train loss  0.7182996015073538   , vali loss  0.7293646581653555
+epoch  26  , train loss  0.7164804196755716   , vali loss  0.7273608288437611
+epoch  27  , train loss  0.7158725659768267   , vali loss  0.7298412096603826
+epoch  28  , train loss  0.7154651173167931   , vali loss  0.7129779854190483
+epoch  29  , train loss  0.7133390596634032   , vali loss  0.7100988961081447
+epoch  30  , train loss  0.7121472063629019   , vali loss  0.7169712159579079
+epoch  31  , train loss  0.7121396473362672   , vali loss  0.7149763877753876
+epoch  32  , train loss  0.7117711285900274   , vali loss  0.7053873191365393
+epoch  33  , train loss  0.711755686290394   , vali loss  0.7037231660220677
+epoch  34  , train loss  0.7118689088318421   , vali loss  0.6988522780740561
+epoch  35  , train loss  0.711070827149723   , vali loss  0.7063662951936992
+epoch  36  , train loss  0.7109053540165684   , vali loss  0.7037302872120769
+epoch  37  , train loss  0.7115687149331549   , vali loss  0.699149822915391
+epoch  38  , train loss  0.7110814690722971   , vali loss  0.7029309034002772
+epoch  39  , train loss  0.710463028343865   , vali loss  0.701667782305776
+epoch  40  , train loss  0.7101414414977331   , vali loss  0.699054912781327
+epoch  41  , train loss  0.7102052808243412   , vali loss  0.6969916078015981
+epoch  42  , train loss  0.7101640235471051   , vali loss  0.699245479197751
+epoch  43  , train loss  0.7102123447232452   , vali loss  0.6965880865823055
+epoch  44  , train loss  0.7100505262357749   , vali loss  0.6949119148500447
+epoch  45  , train loss  0.7099791736180358   , vali loss  0.6941170516463622
+epoch  46  , train loss  0.7099171444320795   , vali loss  0.6935490357971995
+epoch  47  , train loss  0.7098718753984344   , vali loss  0.6934699728261621
+epoch  48  , train loss  0.7098622578628362   , vali loss  0.6935040564096477
+epoch  49  , train loss  0.7098023359213882   , vali loss  0.6937492184246068
+epoch  50  , train loss  0.7097968326063   , vali loss  0.6935691463722898
+epoch  51  , train loss  0.7098362048477082   , vali loss  0.6935758638027517
+epoch  52  , train loss  0.7098093911104959   , vali loss  0.6937923774495929
+epoch  53  , train loss  0.7098010176150752   , vali loss  0.6937788317383645
+epoch  54  , train loss  0.7098261757046733   , vali loss  0.6940729842500979
+epoch  55  , train loss  0.7097727557562689   , vali loss  0.6942435172759536
+epoch  56  , train loss  0.709743453007237   , vali loss  0.6943771464257693
+epoch  57  , train loss  0.7097185359612539   , vali loss  0.6948234155404404
+epoch  58  , train loss  0.7096545510631009   , vali loss  0.6953790257695519
+epoch  59  , train loss  0.7097910573036257   , vali loss  0.6954202859500535
+P1 = 0,  P2 = 0, P3 = 0, Fold = 0, CI-i = 0.526281, MSE = 0.693470
+param  4   32   12
+epoch  0  , train loss  28.876281622217164   , vali loss  1.3414493354163193
+epoch  1  , train loss  0.8571868764434184   , vali loss  1.80013996286173
+epoch  2  , train loss  0.806919892660238   , vali loss  2.1514649880979393
+epoch  3  , train loss  0.7909234576836418   , vali loss  2.0934046623072815
+epoch  4  , train loss  0.7790781910261357   , vali loss  2.440547259238958
+epoch  5  , train loss  0.7702009372620696   , vali loss  2.9539749946542946
+epoch  6  , train loss  0.769231037713965   , vali loss  2.4372287091735148
+epoch  7  , train loss  0.7637702108844846   , vali loss  2.5067126992884834
+epoch  8  , train loss  0.7580697073367423   , vali loss  2.512251133316093
+epoch  9  , train loss  0.7550887308821624   , vali loss  2.378850375579562
+epoch  10  , train loss  0.7513696386108987   , vali loss  2.127697582253099
+epoch  11  , train loss  0.7464514966636218   , vali loss  1.8502529320442742
+epoch  12  , train loss  0.7443502039734925   , vali loss  1.7467278933511778
+epoch  13  , train loss  0.7407535306696926   , vali loss  1.6828425369207534
+epoch  14  , train loss  0.7396588348514915   , vali loss  1.5964173681508933
+epoch  15  , train loss  0.7372707114129422   , vali loss  1.7080777249952461
+epoch  16  , train loss  0.7339222005793986   , vali loss  1.7967239692395145
+epoch  17  , train loss  0.7304183992900903   , vali loss  1.7106628736360197
+epoch  18  , train loss  0.7284473017734373   , vali loss  1.6672401057572432
+epoch  19  , train loss  0.7257056754590702   , vali loss  1.48443623096336
+epoch  20  , train loss  0.7241996988790983   , vali loss  1.2779672985492072
+epoch  21  , train loss  0.7258393021743769   , vali loss  1.0789691661432323
+epoch  22  , train loss  0.7223144487507467   , vali loss  0.9358162568629111
+epoch  23  , train loss  0.7220090504735142   , vali loss  0.8537296872081154
+epoch  24  , train loss  0.719323732227645   , vali loss  0.7547821840126285
+epoch  25  , train loss  0.7170959129635436   , vali loss  0.7498188330113564
+epoch  26  , train loss  0.7163867114208273   , vali loss  0.7435777800480787
+epoch  27  , train loss  0.7147903641226254   , vali loss  0.7462156500117868
+epoch  28  , train loss  0.7155665426598068   , vali loss  0.7281640400727581
+epoch  29  , train loss  0.7136866447920608   , vali loss  0.7115530185524299
+epoch  30  , train loss  0.7126104975467682   , vali loss  0.7185372256683465
+epoch  31  , train loss  0.7121884144902731   , vali loss  0.717104169868662
+epoch  32  , train loss  0.7111725026272017   , vali loss  0.7188536154697025
+epoch  33  , train loss  0.7123423369787643   , vali loss  0.704797105981163
+epoch  34  , train loss  0.7119081378303662   , vali loss  0.7152730068893602
+epoch  35  , train loss  0.7114993324683339   , vali loss  0.7153018228333559
+epoch  36  , train loss  0.7110481330222073   , vali loss  0.7142901386661347
+epoch  37  , train loss  0.7106664484570249   , vali loss  0.7113404672218062
+epoch  38  , train loss  0.7104080178051865   , vali loss  0.7034166828005806
+epoch  39  , train loss  0.7101860790620674   , vali loss  0.7012948203839283
+epoch  40  , train loss  0.7102335598970925   , vali loss  0.7005078826957571
+epoch  41  , train loss  0.7100623188827359   , vali loss  0.6996861970450661
+epoch  42  , train loss  0.7100340499441956   , vali loss  0.698178027925066
+epoch  43  , train loss  0.7100472581689594   , vali loss  0.6975291537103833
+epoch  44  , train loss  0.7100352113471557   , vali loss  0.6970832947726857
+epoch  45  , train loss  0.7101729326466156   , vali loss  0.693749722431491
+epoch  46  , train loss  0.7099497424357981   , vali loss  0.6950257940073162
+epoch  47  , train loss  0.7099737329802149   , vali loss  0.6937373263256826
+epoch  48  , train loss  0.7099126409502042   , vali loss  0.6934896602866022
+epoch  49  , train loss  0.7099196415579212   , vali loss  0.6935048184019106
+epoch  50  , train loss  0.7099321369372629   , vali loss  0.6934707283949499
+epoch  51  , train loss  0.7098572565737583   , vali loss  0.6935037680821209
+epoch  52  , train loss  0.7098949007159577   , vali loss  0.6935734232028837
+epoch  53  , train loss  0.7097831764772328   , vali loss  0.693585280341653
+epoch  54  , train loss  0.7098829265604693   , vali loss  0.6947821265480533
+epoch  55  , train loss  0.7096959756924214   , vali loss  0.6958014382438528
+epoch  56  , train loss  0.7096936542201885   , vali loss  0.6958081770314614
+epoch  57  , train loss  0.7096418388219262   , vali loss  0.6958538572793924
+epoch  58  , train loss  0.7096370985182678   , vali loss  0.6958671879735709
+epoch  59  , train loss  0.7096338526221182   , vali loss  0.6958741103655018
+P1 = 0,  P2 = 0, P3 = 1, Fold = 0, CI-i = 0.527060, MSE = 0.693471
+param  8   32   8
+epoch  0  , train loss  20.749226557267324   , vali loss  1.5048555486417203
+epoch  1  , train loss  0.8280121631210776   , vali loss  2.042319828785683
+epoch  2  , train loss  0.7927892802240545   , vali loss  2.044420469828807
+epoch  3  , train loss  0.7764273709349391   , vali loss  3.04525076003251
+epoch  4  , train loss  0.7778711829460571   , vali loss  2.544654944479039
+epoch  5  , train loss  0.7677801083747857   , vali loss  2.8011809461005135
+epoch  6  , train loss  0.765096199183445   , vali loss  2.690888709664871
+epoch  7  , train loss  0.7620425434911915   , vali loss  2.546963935295398
+epoch  8  , train loss  0.757437342277999   , vali loss  2.151336178846619
+epoch  9  , train loss  0.7531386512957351   , vali loss  1.7340240332989443
+epoch  10  , train loss  0.7448236387132467   , vali loss  1.746617971220737
+epoch  11  , train loss  0.7422544771487011   , vali loss  1.497937434339845
+epoch  12  , train loss  0.7395666163620553   , vali loss  1.3992620811680632
+epoch  13  , train loss  0.7387787084600275   , vali loss  1.4841515988336802
+epoch  14  , train loss  0.734179418966695   , vali loss  1.5967829278375625
+epoch  15  , train loss  0.7306207950192987   , vali loss  1.5075603050633746
+epoch  16  , train loss  0.7260975201287536   , vali loss  1.404683606871018
+epoch  17  , train loss  0.7250071820636228   , vali loss  1.2201750623356644
+epoch  18  , train loss  0.7231173646753071   , vali loss  1.0606164107118738
+epoch  19  , train loss  0.7243239307211223   , vali loss  0.8561314599228157
+epoch  20  , train loss  0.720683937953653   , vali loss  0.7953540353423245
+epoch  21  , train loss  0.7203777545064217   , vali loss  0.7136536373613789
+epoch  22  , train loss  0.7173944673882245   , vali loss  0.7065835909742072
+epoch  23  , train loss  0.7163961741881826   , vali loss  0.7097320869648932
+epoch  24  , train loss  0.715460129573263   , vali loss  0.7097503975335427
+epoch  25  , train loss  0.7152569775554989   , vali loss  0.6997509784208318
+epoch  26  , train loss  0.7136516477323883   , vali loss  0.6980217543933737
+epoch  27  , train loss  0.7124247200848686   , vali loss  0.6997476397351083
+epoch  28  , train loss  0.71184127125374   , vali loss  0.6989105463638849
+epoch  29  , train loss  0.7115358167317876   , vali loss  0.6994100833502865
+epoch  30  , train loss  0.7114673905391007   , vali loss  0.6981027704001598
+epoch  31  , train loss  0.7108069476522904   , vali loss  0.700518859609802
+epoch  32  , train loss  0.7109606277181155   , vali loss  0.6971977139040665
+epoch  33  , train loss  0.7107307901574303   , vali loss  0.6986853251071806
+epoch  34  , train loss  0.7105004559175822   , vali loss  0.697440122002378
+epoch  35  , train loss  0.7102063244424265   , vali loss  0.6964968545105766
+epoch  36  , train loss  0.7101883227993675   , vali loss  0.6945875011608659
+epoch  37  , train loss  0.7100466033465073   , vali loss  0.6939241189506417
+epoch  38  , train loss  0.710011438063771   , vali loss  0.6935556360809001
+epoch  39  , train loss  0.7099725185412481   , vali loss  0.6935015073576936
+epoch  40  , train loss  0.7099467185547776   , vali loss  0.693475973999865
+epoch  41  , train loss  0.7099241601428253   , vali loss  0.6934818881088707
+epoch  42  , train loss  0.7099046387310242   , vali loss  0.693499153889056
+epoch  43  , train loss  0.7098756441212818   , vali loss  0.6935631285773921
+epoch  44  , train loss  0.7098536465385623   , vali loss  0.69365358224736
+epoch  45  , train loss  0.709839603364894   , vali loss  0.6935177061878218
+epoch  46  , train loss  0.709689130581788   , vali loss  0.6938722264071724
+epoch  47  , train loss  0.7098032975766604   , vali loss  0.6939942127034039
+epoch  48  , train loss  0.7096892548808648   , vali loss  0.6936132831928894
+epoch  49  , train loss  0.7098924009257651   , vali loss  0.6942344603851098
+epoch  50  , train loss  0.7098049459963534   , vali loss  0.6946308172767073
+epoch  51  , train loss  0.7097389292871821   , vali loss  0.6952575133860435
+epoch  52  , train loss  0.70964543386599   , vali loss  0.6954546741072558
+epoch  53  , train loss  0.7095464688650495   , vali loss  0.6947456665813024
+epoch  54  , train loss  0.7097297362573821   , vali loss  0.6955406929726978
+epoch  55  , train loss  0.7096849250233369   , vali loss  0.6956522116209131
+epoch  56  , train loss  0.7096636315762431   , vali loss  0.6956729613075554
+epoch  57  , train loss  0.7104089761700911   , vali loss  0.693696090263454
+epoch  58  , train loss  0.7100257555446134   , vali loss  0.6941333884057936
+epoch  59  , train loss  0.7099206799138378   , vali loss  0.6943909425073529
+P1 = 0,  P2 = 1, P3 = 0, Fold = 0, CI-i = 0.529078, MSE = 0.693476
+param  8   32   12
+epoch  0  , train loss  29.447550046866727   , vali loss  0.9872738384536378
+epoch  1  , train loss  0.8411953343491775   , vali loss  1.4321999214417593
+epoch  2  , train loss  0.8018513483552121   , vali loss  1.895535830269787
+epoch  3  , train loss  0.7800826910690204   , vali loss  2.0232649263565543
+epoch  4  , train loss  0.7686042758517144   , vali loss  2.0399739939943045
+epoch  5  , train loss  0.7615343930151638   , vali loss  2.1036727623197002
+epoch  6  , train loss  0.7587648408798463   , vali loss  2.0664025453243986
+epoch  7  , train loss  0.7557194764449949   , vali loss  2.258385691433968
+epoch  8  , train loss  0.7491549513033823   , vali loss  2.279522609103427
+epoch  9  , train loss  0.7460707622071828   , vali loss  2.2115464450392563
+epoch  10  , train loss  0.742240084007551   , vali loss  2.1531277500915955
+epoch  11  , train loss  0.736848741825739   , vali loss  2.0621320825714493
+epoch  12  , train loss  0.7353447944831616   , vali loss  1.9697480329464871
+epoch  13  , train loss  0.7325578195040214   , vali loss  1.9045164258859069
+epoch  14  , train loss  0.7291837548446278   , vali loss  1.7326637191420198
+epoch  15  , train loss  0.7286297924091926   , vali loss  1.5689051569345862
+epoch  16  , train loss  0.7266101952956155   , vali loss  1.411111261548381
+epoch  17  , train loss  0.7272141096653523   , vali loss  1.2484235543627447
+epoch  18  , train loss  0.7265348966592607   , vali loss  1.05435579900564
+epoch  19  , train loss  0.7231893503682255   , vali loss  0.9287860371023863
+epoch  20  , train loss  0.7222381684175153   , vali loss  0.8955050774485295
+epoch  21  , train loss  0.7209083421830688   , vali loss  0.8176077625040075
+epoch  22  , train loss  0.7200576039752712   , vali loss  0.7428608406405995
+epoch  23  , train loss  0.7188106292706657   , vali loss  0.722917242302755
+epoch  24  , train loss  0.7172973505244226   , vali loss  0.7241324260055919
+epoch  25  , train loss  0.716154093151798   , vali loss  0.7170221824141312
+epoch  26  , train loss  0.7159649324813894   , vali loss  0.7142140987565501
+epoch  27  , train loss  0.7155484606265369   , vali loss  0.7080962988053944
+epoch  28  , train loss  0.7149190944656099   , vali loss  0.6974836276651633
+epoch  29  , train loss  0.7127186856444516   , vali loss  0.70144352556527
+epoch  30  , train loss  0.711841865785046   , vali loss  0.7025522043718414
+epoch  31  , train loss  0.7113840733254795   , vali loss  0.7038846485321668
+epoch  32  , train loss  0.7108575599464182   , vali loss  0.7025961935130046
+epoch  33  , train loss  0.7106040948341774   , vali loss  0.7026669675522764
+epoch  34  , train loss  0.710476174272415   , vali loss  0.7038121395861336
+epoch  35  , train loss  0.7104828317927845   , vali loss  0.6987396440819776
+epoch  36  , train loss  0.7103818032233354   , vali loss  0.6972140542139498
+epoch  37  , train loss  0.7102694805883322   , vali loss  0.6964007551143011
+epoch  38  , train loss  0.7102842795636545   , vali loss  0.6975574133645225
+epoch  39  , train loss  0.7102689492302681   , vali loss  0.6953544631759908
+epoch  40  , train loss  0.7102512123257041   , vali loss  0.694926020749368
+epoch  41  , train loss  0.7103049672413855   , vali loss  0.6956878930558607
+epoch  42  , train loss  0.7102665539455351   , vali loss  0.6945870832388269
+epoch  43  , train loss  0.7101426205743218   , vali loss  0.6947534325200375
+epoch  44  , train loss  0.7101494887961579   , vali loss  0.6941842220315735
+epoch  45  , train loss  0.7101863530789151   , vali loss  0.6940417407769773
+epoch  46  , train loss  0.7100542205170812   , vali loss  0.6945445495711728
+epoch  47  , train loss  0.7102059774356706   , vali loss  0.6938497442422292
+epoch  48  , train loss  0.7102093223059545   , vali loss  0.693727008585964
+epoch  49  , train loss  0.7101159059231403   , vali loss  0.6936095105324883
+epoch  50  , train loss  0.7101514130230454   , vali loss  0.693532333846288
+epoch  51  , train loss  0.710156016280477   , vali loss  0.6934801677789213
+epoch  52  , train loss  0.7100857476331889   , vali loss  0.6935990155816798
+epoch  53  , train loss  0.7102455296009073   , vali loss  0.6934905758222928
+epoch  54  , train loss  0.7100467970154832   , vali loss  0.6941019649786022
+epoch  55  , train loss  0.7099804257994536   , vali loss  0.6934698854076293
+epoch  56  , train loss  0.7101012346642802   , vali loss  0.693855348699828
+epoch  57  , train loss  0.7101005127370809   , vali loss  0.6938595713814969
+epoch  58  , train loss  0.7099764554811109   , vali loss  0.6937655039414029
+epoch  59  , train loss  0.7100531047528492   , vali loss  0.6939339567140463
+P1 = 0,  P2 = 1, P3 = 1, Fold = 0, CI-i = 0.496719, MSE = 0.693470
+[32]
+[4, 8]
+[8, 12]
+param  4   32   8
+epoch  0  , train loss  33.32741750634553   , vali loss  1.3007657876738832
+epoch  1  , train loss  0.8389229988167533   , vali loss  2.093113349896841
+epoch  2  , train loss  0.7981260460444893   , vali loss  2.4400074296639
+epoch  3  , train loss  0.7767071625075751   , vali loss  2.034823358848255
+epoch  4  , train loss  0.7716374473488551   , vali loss  2.3132748077482965
+epoch  5  , train loss  0.7609725392713377   , vali loss  2.4167439479843367
+epoch  6  , train loss  0.7592675039694307   , vali loss  2.305588686664002
+epoch  7  , train loss  0.7566212721052183   , vali loss  2.3739527230744457
+epoch  8  , train loss  0.7500266899280615   , vali loss  2.3962351001193882
+epoch  9  , train loss  0.747633936286148   , vali loss  2.2628871217287623
+epoch  10  , train loss  0.7464943920690796   , vali loss  2.1159400533000365
+epoch  11  , train loss  0.7428598626242169   , vali loss  2.08433189201684
+epoch  12  , train loss  0.73792840747796   , vali loss  2.143469528094886
+epoch  13  , train loss  0.7374341207084315   , vali loss  2.0689789551482294
+epoch  14  , train loss  0.7371005031536193   , vali loss  2.2524548853494313
+epoch  15  , train loss  0.7327400032676418   , vali loss  2.110657577433841
+epoch  16  , train loss  0.7314985763404255   , vali loss  2.114407251182288
+epoch  17  , train loss  0.7284763390188427   , vali loss  2.05303483512813
+epoch  18  , train loss  0.7245431692489321   , vali loss  1.8496094935500063
+epoch  19  , train loss  0.7242249804391329   , vali loss  1.617033606668157
+epoch  20  , train loss  0.7220996372733246   , vali loss  1.46895875223841
+epoch  21  , train loss  0.7217143206474438   , vali loss  1.3275680175696862
+epoch  22  , train loss  0.722262312853147   , vali loss  1.1351225037112422
+epoch  23  , train loss  0.7205631902116372   , vali loss  0.9665572616787732
+epoch  24  , train loss  0.7185636840791328   , vali loss  0.8997565260748321
+epoch  25  , train loss  0.7162342868812238   , vali loss  0.8641785029993856
+epoch  26  , train loss  0.7168814643459164   , vali loss  0.7643352519601524
+epoch  27  , train loss  0.7158801998321043   , vali loss  0.74338529636958
+epoch  28  , train loss  0.7150122507279355   , vali loss  0.7508737266054617
+epoch  29  , train loss  0.7134511420683106   , vali loss  0.741064056866765
+epoch  30  , train loss  0.7124332865778851   , vali loss  0.7409469303133233
+epoch  31  , train loss  0.7116606107881439   , vali loss  0.7254323573276764
+epoch  32  , train loss  0.7099025566511741   , vali loss  0.7418838719586404
+epoch  33  , train loss  0.7092376821897207   , vali loss  0.7521001290764534
+epoch  34  , train loss  0.7094571520684728   , vali loss  0.7447287764376995
+epoch  35  , train loss  0.7093813819569282   , vali loss  0.7123486662214644
+epoch  36  , train loss  0.709277493692169   , vali loss  0.725579511847717
+epoch  37  , train loss  0.7088352219718155   , vali loss  0.7267828519270901
+epoch  38  , train loss  0.708733028944929   , vali loss  0.7225963055673174
+epoch  39  , train loss  0.7086684974949559   , vali loss  0.718540694759077
+epoch  40  , train loss  0.7087041475020549   , vali loss  0.7085917544537915
+epoch  41  , train loss  0.7089245083566863   , vali loss  0.7106838273012546
+epoch  42  , train loss  0.7084996710055144   , vali loss  0.7065821112281891
+epoch  43  , train loss  0.7083912034503849   , vali loss  0.7085061366895943
+epoch  44  , train loss  0.7085033828515768   , vali loss  0.7040741723557211
+epoch  45  , train loss  0.7083614710694767   , vali loss  0.7029005641703543
+epoch  46  , train loss  0.7083747373172105   , vali loss  0.7028050842704436
+epoch  47  , train loss  0.7083379734904625   , vali loss  0.7023228266642115
+epoch  48  , train loss  0.7083016197953246   , vali loss  0.7016123710922699
+epoch  49  , train loss  0.7083004521866344   , vali loss  0.7032562859363586
+epoch  50  , train loss  0.7084847023524713   , vali loss  0.7014996367137395
+epoch  51  , train loss  0.7084197303591825   , vali loss  0.7011788027750689
+epoch  52  , train loss  0.7083707520258808   , vali loss  0.7009091477330233
+epoch  53  , train loss  0.7083428129406364   , vali loss  0.7007223853141219
+epoch  54  , train loss  0.7083506936974718   , vali loss  0.7005115297808544
+epoch  55  , train loss  0.7079880256813479   , vali loss  0.7004659397881884
+epoch  56  , train loss  0.7084518795422546   , vali loss  0.7000472778520106
+epoch  57  , train loss  0.7082942914391793   , vali loss  0.6999771023178895
+epoch  58  , train loss  0.7084184322517342   , vali loss  0.7000083541620921
+epoch  59  , train loss  0.7081776884684939   , vali loss  0.7002291136441441
+P1 = 0,  P2 = 0, P3 = 0, Fold = 1, CI-i = 0.497864, MSE = 0.699977
+param  4   32   12
+epoch  0  , train loss  37.135129470272126   , vali loss  1.197189937425873
+epoch  1  , train loss  0.8393637104583382   , vali loss  2.201539346063583
+epoch  2  , train loss  0.8044906382667425   , vali loss  1.9951492447523809
+epoch  3  , train loss  0.7831465526617634   , vali loss  2.3581146973139546
+epoch  4  , train loss  0.7787824353372629   , vali loss  2.372483496433935
+epoch  5  , train loss  0.7744197955843557   , vali loss  2.20340808547549
+epoch  6  , train loss  0.7688392815817812   , vali loss  2.625024694801012
+epoch  7  , train loss  0.7644264891307414   , vali loss  2.4771432171335346
+epoch  8  , train loss  0.7621593541421329   , vali loss  2.2887985952623033
+epoch  9  , train loss  0.7541400241739306   , vali loss  2.35887941804141
+epoch  10  , train loss  0.7523906285513953   , vali loss  2.0664366268544287
+epoch  11  , train loss  0.7492283265324172   , vali loss  1.93570845430376
+epoch  12  , train loss  0.7458520384343879   , vali loss  1.8018424138370077
+epoch  13  , train loss  0.7392553618959631   , vali loss  1.7357669572100998
+epoch  14  , train loss  0.7398978360524624   , vali loss  1.7841451263747095
+epoch  15  , train loss  0.7350220941107315   , vali loss  1.8672201412926164
+epoch  16  , train loss  0.732457918269527   , vali loss  1.7665064969353859
+epoch  17  , train loss  0.7295259025986139   , vali loss  1.7630781076882152
+epoch  18  , train loss  0.7268323925956937   , vali loss  1.763804365313696
+epoch  19  , train loss  0.7244712313359002   , vali loss  1.546064612727422
+epoch  20  , train loss  0.7220525404072539   , vali loss  1.3662020254790785
+epoch  21  , train loss  0.7227576320571402   , vali loss  1.1310566539627467
+epoch  22  , train loss  0.7218926945858407   , vali loss  0.9711777387709793
+epoch  23  , train loss  0.7188520587871496   , vali loss  0.8797981072684281
+epoch  24  , train loss  0.7169906855040813   , vali loss  0.8139077466888704
+epoch  25  , train loss  0.7175261559016544   , vali loss  0.7309616727519056
+epoch  26  , train loss  0.7155847356855201   , vali loss  0.7361781196668271
+epoch  27  , train loss  0.7145322325192265   , vali loss  0.7285899945037043
+epoch  28  , train loss  0.7140329862585701   , vali loss  0.725589675584324
+epoch  29  , train loss  0.7136631356695422   , vali loss  0.713851221783943
+epoch  30  , train loss  0.7129118027882559   , vali loss  0.7171677269615765
+epoch  31  , train loss  0.7107879809154042   , vali loss  0.7147669466283745
+epoch  32  , train loss  0.7104678779342982   , vali loss  0.7144627535147805
+epoch  33  , train loss  0.7097577890629299   , vali loss  0.7189593415529109
+epoch  34  , train loss  0.7097347473570779   , vali loss  0.7100833696410309
+epoch  35  , train loss  0.709394802613021   , vali loss  0.7078656258330969
+epoch  36  , train loss  0.7086714609578124   , vali loss  0.7071834254454753
+epoch  37  , train loss  0.7085249584718796   , vali loss  0.7059057727391828
+epoch  38  , train loss  0.7084426195226283   , vali loss  0.7040688433151907
+epoch  39  , train loss  0.7083614049082907   , vali loss  0.7035479179570117
+epoch  40  , train loss  0.7083663153009658   , vali loss  0.7030140674999118
+epoch  41  , train loss  0.7086196119058645   , vali loss  0.7035959110006458
+epoch  42  , train loss  0.7086044343296048   , vali loss  0.7018192900546314
+epoch  43  , train loss  0.7083209820234998   , vali loss  0.7011903644944805
+epoch  44  , train loss  0.708266947916505   , vali loss  0.7008250142239781
+epoch  45  , train loss  0.7082347726615041   , vali loss  0.7005392713684416
+epoch  46  , train loss  0.7082347300439866   , vali loss  0.7004036640908005
+epoch  47  , train loss  0.7082018383235545   , vali loss  0.7002881347446586
+epoch  48  , train loss  0.7081995027220964   , vali loss  0.700083651770207
+epoch  49  , train loss  0.7081790667484084   , vali loss  0.7000189918295676
+epoch  50  , train loss  0.7082858493057244   , vali loss  0.7000044463002474
+epoch  51  , train loss  0.7081785220474199   , vali loss  0.699976464077317
+epoch  52  , train loss  0.7081707733952114   , vali loss  0.7000360102908507
+epoch  53  , train loss  0.7081004798705673   , vali loss  0.7001689760989447
+epoch  54  , train loss  0.7080517031146158   , vali loss  0.7004567739341628
+epoch  55  , train loss  0.7079859705716243   , vali loss  0.7009423865297685
+epoch  56  , train loss  0.7079116714116228   , vali loss  0.7014963634603614
+epoch  57  , train loss  0.7080183161666533   , vali loss  0.700641533208768
+epoch  58  , train loss  0.7081308551221516   , vali loss  0.7009924767078938
+epoch  59  , train loss  0.7079539212366902   , vali loss  0.7013106855078854
+P1 = 0,  P2 = 0, P3 = 1, Fold = 1, CI-i = 0.505087, MSE = 0.699976
+param  8   32   8
+epoch  0  , train loss  17.42026568549343   , vali loss  1.2557087628722488
+epoch  1  , train loss  0.8315842109060619   , vali loss  1.4967306096886832
+epoch  2  , train loss  0.7962146908962671   , vali loss  2.110799542457596
+epoch  3  , train loss  0.7807630789480142   , vali loss  2.068304662055104
+epoch  4  , train loss  0.7726985504985419   , vali loss  2.1154314060783124
+epoch  5  , train loss  0.7651936854696315   , vali loss  2.0338001632153326
+epoch  6  , train loss  0.7610187531787757   , vali loss  1.8961145156860546
+epoch  7  , train loss  0.7559811035165008   , vali loss  1.986734974819193
+epoch  8  , train loss  0.7517740956917643   , vali loss  1.6744394215814562
+epoch  9  , train loss  0.7466726660716357   , vali loss  1.7773739852718498
+epoch  10  , train loss  0.7450970593722506   , vali loss  1.6307846743244336
+epoch  11  , train loss  0.7416321027586767   , vali loss  1.6729157940245054
+epoch  12  , train loss  0.7358364663903612   , vali loss  1.6601466837765946
+epoch  13  , train loss  0.7341610550868335   , vali loss  1.5650106105662183
+epoch  14  , train loss  0.7312941979016759   , vali loss  1.508497168329597
+epoch  15  , train loss  0.7273365102847833   , vali loss  1.4383172448884225
+epoch  16  , train loss  0.723947854726498   , vali loss  1.325093130233341
+epoch  17  , train loss  0.7232245842708507   , vali loss  1.1935033100224368
+epoch  18  , train loss  0.7224695723594744   , vali loss  1.055256070929325
+epoch  19  , train loss  0.7213533128304075   , vali loss  0.8806088333520856
+epoch  20  , train loss  0.7191838180675881   , vali loss  0.8049166137342663
+epoch  21  , train loss  0.7174834242917806   , vali loss  0.7606921039147068
+epoch  22  , train loss  0.7167564788464209   , vali loss  0.711740771671355
+epoch  23  , train loss  0.714842484360737   , vali loss  0.7058066321844331
+epoch  24  , train loss  0.7143125975414452   , vali loss  0.7119625621271664
+epoch  25  , train loss  0.713384831887389   , vali loss  0.7057551476435124
+epoch  26  , train loss  0.7118980341187725   , vali loss  0.7062720196983442
+epoch  27  , train loss  0.7109118034786525   , vali loss  0.70665545349004
+epoch  28  , train loss  0.7105745165954956   , vali loss  0.705060621076441
+epoch  29  , train loss  0.709900095961314   , vali loss  0.7077221769352434
+epoch  30  , train loss  0.7094952546483856   , vali loss  0.7053530189634016
+epoch  31  , train loss  0.7090635526681686   , vali loss  0.7087798548788717
+epoch  32  , train loss  0.7092626217571808   , vali loss  0.7064609517819612
+epoch  33  , train loss  0.708967122190758   , vali loss  0.7067981047066351
+epoch  34  , train loss  0.7084969230587064   , vali loss  0.7042772290828693
+epoch  35  , train loss  0.708388767604614   , vali loss  0.7024512361540232
+epoch  36  , train loss  0.7080297418680781   , vali loss  0.7042219036578333
+epoch  37  , train loss  0.7086619391029565   , vali loss  0.7015044367823271
+epoch  38  , train loss  0.7082866900067235   , vali loss  0.7006726520803882
+epoch  39  , train loss  0.7082429798240077   , vali loss  0.700269536090421
+epoch  40  , train loss  0.7082054105285966   , vali loss  0.7001077365044185
+epoch  41  , train loss  0.7081963593142419   , vali loss  0.7005303406123853
+epoch  42  , train loss  0.7082427446534568   , vali loss  0.7000430205156345
+epoch  43  , train loss  0.7081910487427137   , vali loss  0.6999787776109333
+epoch  44  , train loss  0.708160930291008   , vali loss  0.6999781453855639
+epoch  45  , train loss  0.70814911308726   , vali loss  0.6999911635462398
+epoch  46  , train loss  0.7081252025338551   , vali loss  0.7000179159973327
+epoch  47  , train loss  0.708112237681367   , vali loss  0.7000382415168912
+epoch  48  , train loss  0.7081094443740604   , vali loss  0.700087341796415
+epoch  49  , train loss  0.7080893488052235   , vali loss  0.7001798785865697
+epoch  50  , train loss  0.7080746868398371   , vali loss  0.7001709531259486
+epoch  51  , train loss  0.7080013808536835   , vali loss  0.7005488858102475
+epoch  52  , train loss  0.7080072839877408   , vali loss  0.7010219272905981
+epoch  53  , train loss  0.7079153327257449   , vali loss  0.7014721563777045
+epoch  54  , train loss  0.7078648460492605   , vali loss  0.7017800440145437
+epoch  55  , train loss  0.7080679161072359   , vali loss  0.7011307512366842
+epoch  56  , train loss  0.7079829472682327   , vali loss  0.700583225410335
+epoch  57  , train loss  0.7079787645034397   , vali loss  0.7011518636561037
+epoch  58  , train loss  0.7087707728626848   , vali loss  0.7003202443042056
+epoch  59  , train loss  0.7081458413127326   , vali loss  0.7006481481176683
+P1 = 0,  P2 = 1, P3 = 0, Fold = 1, CI-i = 0.533212, MSE = 0.699978
+param  8   32   12
+epoch  0  , train loss  38.67780008094485   , vali loss  1.039069179173891
+epoch  1  , train loss  0.8473711320784025   , vali loss  1.4057747744263092
+epoch  2  , train loss  0.8113569249554707   , vali loss  1.6548557492404279
+epoch  3  , train loss  0.7879414121529678   , vali loss  1.7859018096471886
+epoch  4  , train loss  0.7776058197348101   , vali loss  1.8324241761209468
+epoch  5  , train loss  0.7721552490444088   , vali loss  1.9489704769516205
+epoch  6  , train loss  0.766963353001114   , vali loss  1.9027983754838498
+epoch  7  , train loss  0.7594145603318805   , vali loss  2.0498932726010985
+epoch  8  , train loss  0.7578322879920552   , vali loss  1.854515041679097
+epoch  9  , train loss  0.7505268894698838   , vali loss  1.7459686285369538
+epoch  10  , train loss  0.7477070025895924   , vali loss  1.7882072729718177
+epoch  11  , train loss  0.7440822466915314   , vali loss  1.7134994295212078
+epoch  12  , train loss  0.7403758741494479   , vali loss  1.913793904238552
+epoch  13  , train loss  0.7354453333654786   , vali loss  1.8378391101713674
+epoch  14  , train loss  0.7344633681576113   , vali loss  1.7907756815653932
+epoch  15  , train loss  0.7307805840395328   , vali loss  1.73869972058679
+epoch  16  , train loss  0.7282996239125792   , vali loss  1.617084978269027
+epoch  17  , train loss  0.7250113532334994   , vali loss  1.5494615313149012
+epoch  18  , train loss  0.7247975168964127   , vali loss  1.3617720333092398
+epoch  19  , train loss  0.7228481206086329   , vali loss  1.2523575523223947
+epoch  20  , train loss  0.7233932437287769   , vali loss  1.0998146175594234
+epoch  21  , train loss  0.7213008378646685   , vali loss  0.976059756072618
+epoch  22  , train loss  0.7204940827344432   , vali loss  0.8725924556661435
+epoch  23  , train loss  0.7178625718838029   , vali loss  0.8357797684181504
+epoch  24  , train loss  0.7166257608008836   , vali loss  0.8023029090552649
+epoch  25  , train loss  0.7172433256625137   , vali loss  0.7614480109754064
+epoch  26  , train loss  0.7164735728653183   , vali loss  0.7175988835543039
+epoch  27  , train loss  0.7148801810187748   , vali loss  0.7153437733257056
+epoch  28  , train loss  0.7140174076506232   , vali loss  0.7098027397293232
+epoch  29  , train loss  0.7131993078049583   , vali loss  0.7076779721510139
+epoch  30  , train loss  0.7137568205499754   , vali loss  0.7106956144743505
+epoch  31  , train loss  0.7112838122191341   , vali loss  0.7127335255195261
+epoch  32  , train loss  0.7117937186868885   , vali loss  0.7042152809766494
+epoch  33  , train loss  0.7101490617318569   , vali loss  0.7145111149283654
+epoch  34  , train loss  0.7092015716309683   , vali loss  0.7138295497812753
+epoch  35  , train loss  0.7088953171595814   , vali loss  0.7110992648345198
+epoch  36  , train loss  0.7087675578288518   , vali loss  0.7095636077392675
+epoch  37  , train loss  0.708702502841486   , vali loss  0.7081685330964664
+epoch  38  , train loss  0.708611138060283   , vali loss  0.7063553399392245
+epoch  39  , train loss  0.7085964909317928   , vali loss  0.7060412715375196
+epoch  40  , train loss  0.708559809107173   , vali loss  0.7045849872310446
+epoch  41  , train loss  0.708507678253997   , vali loss  0.7036616261633596
+epoch  42  , train loss  0.7085009573184469   , vali loss  0.7020611651013071
+epoch  43  , train loss  0.7083999518722974   , vali loss  0.7016726801962642
+epoch  44  , train loss  0.7083820941949146   , vali loss  0.7012467761460466
+epoch  45  , train loss  0.7084180879244504   , vali loss  0.7015839849797502
+epoch  46  , train loss  0.708527461879057   , vali loss  0.7006088624147406
+epoch  47  , train loss  0.7083759827001483   , vali loss  0.7002772382026793
+epoch  48  , train loss  0.7082391780976853   , vali loss  0.7001324093101703
+epoch  49  , train loss  0.7082583067672269   , vali loss  0.6999920511652185
+epoch  50  , train loss  0.7081989864247219   , vali loss  0.6999831754532607
+epoch  51  , train loss  0.7081458743766923   , vali loss  0.7000658618659272
+epoch  52  , train loss  0.7081085985379105   , vali loss  0.7002931076875832
+epoch  53  , train loss  0.7083311723854705   , vali loss  0.7002288576214939
+epoch  54  , train loss  0.7079579861863659   , vali loss  0.7013834461851796
+epoch  55  , train loss  0.7078726855404114   , vali loss  0.7019033665931402
+epoch  56  , train loss  0.7078307021171681   , vali loss  0.7020205690911676
+epoch  57  , train loss  0.707854972285364   , vali loss  0.7019651619936452
+epoch  58  , train loss  0.7078560055635903   , vali loss  0.7019885043144903
+epoch  59  , train loss  0.7078525544942753   , vali loss  0.7019895694137158
+P1 = 0,  P2 = 1, P3 = 1, Fold = 1, CI-i = 0.518113, MSE = 0.699983
+[32]
+[4, 8]
+[8, 12]
+param  4   32   8
+epoch  0  , train loss  29.32267212398678   , vali loss  1.6146082158828774
+epoch  1  , train loss  0.8342237216441972   , vali loss  2.301053285635046
+epoch  2  , train loss  0.7926588160358152   , vali loss  2.807036356788301
+epoch  3  , train loss  0.7779262403482788   , vali loss  2.8905052704573753
+epoch  4  , train loss  0.7707007071992337   , vali loss  2.757711935723183
+epoch  5  , train loss  0.7669202835781582   , vali loss  2.4912054205335155
+epoch  6  , train loss  0.7618542645031885   , vali loss  2.43238381298173
+epoch  7  , train loss  0.7556451957812138   , vali loss  2.6450192436694593
+epoch  8  , train loss  0.7543530832342714   , vali loss  2.29718550865651
+epoch  9  , train loss  0.7523969373774859   , vali loss  2.122068779043571
+epoch  10  , train loss  0.7500051261022747   , vali loss  1.9326018106085179
+epoch  11  , train loss  0.7433873894243783   , vali loss  1.937834234141863
+epoch  12  , train loss  0.7402999317442193   , vali loss  1.9144258867497312
+epoch  13  , train loss  0.7375627913469714   , vali loss  1.8733319493937852
+epoch  14  , train loss  0.7349244493153234   , vali loss  1.8592173943412413
+epoch  15  , train loss  0.7331030614554256   , vali loss  1.8233372557319893
+epoch  16  , train loss  0.7283625799176464   , vali loss  1.7935020672663493
+epoch  17  , train loss  0.7262047037479994   , vali loss  1.7684682299904617
+epoch  18  , train loss  0.7236359022428072   , vali loss  1.6891460110229217
+epoch  19  , train loss  0.7209004439733738   , vali loss  1.6156910198017538
+epoch  20  , train loss  0.7190844118821941   , vali loss  1.5411877274071706
+epoch  21  , train loss  0.7175743239547354   , vali loss  1.351410543466789
+epoch  22  , train loss  0.7171489851703031   , vali loss  1.1856393770961324
+epoch  23  , train loss  0.7182490984576618   , vali loss  0.9839744266415363
+epoch  24  , train loss  0.7162559657005168   , vali loss  0.8874396108481382
+epoch  25  , train loss  0.7143488307540907   , vali loss  0.7996235516307331
+epoch  26  , train loss  0.7124465574617709   , vali loss  0.7674364219354685
+epoch  27  , train loss  0.7110730384430316   , vali loss  0.733929609095913
+epoch  28  , train loss  0.7096423859906902   , vali loss  0.7528364392585953
+epoch  29  , train loss  0.7096379022056566   , vali loss  0.7396063760109728
+epoch  30  , train loss  0.7076687905860882   , vali loss  0.742691968527551
+epoch  31  , train loss  0.7072297325356377   , vali loss  0.7391333313158606
+epoch  32  , train loss  0.706036462066586   , vali loss  0.7416741590811011
+epoch  33  , train loss  0.7053232192841953   , vali loss  0.7409982923031748
+epoch  34  , train loss  0.7050120118631004   , vali loss  0.7364609163913972
+epoch  35  , train loss  0.7052735004972315   , vali loss  0.7357085552218722
+epoch  36  , train loss  0.7049255136624821   , vali loss  0.738028724980237
+epoch  37  , train loss  0.7045891993430127   , vali loss  0.7338405053082941
+epoch  38  , train loss  0.7044828842235329   , vali loss  0.7338550489262979
+epoch  39  , train loss  0.7042221470180122   , vali loss  0.732437900335823
+epoch  40  , train loss  0.7041858021264219   , vali loss  0.7299433063139769
+epoch  41  , train loss  0.7043949022455915   , vali loss  0.7272601683327666
+epoch  42  , train loss  0.704146585814563   , vali loss  0.7231285249305658
+epoch  43  , train loss  0.7039810699066305   , vali loss  0.7219343225435432
+epoch  44  , train loss  0.7039690357442739   , vali loss  0.7213565893862501
+epoch  45  , train loss  0.7039621346822714   , vali loss  0.7205392229296348
+epoch  46  , train loss  0.7039230125662556   , vali loss  0.7203684282832702
+epoch  47  , train loss  0.70392308952396   , vali loss  0.7195030804565674
+epoch  48  , train loss  0.703900991790679   , vali loss  0.7192879291458746
+epoch  49  , train loss  0.7038936510230739   , vali loss  0.7189501489858189
+epoch  50  , train loss  0.7037728126719575   , vali loss  0.7211646800764837
+epoch  51  , train loss  0.7040464503833211   , vali loss  0.7187068929041507
+epoch  52  , train loss  0.7039657711946437   , vali loss  0.718229237690419
+epoch  53  , train loss  0.7039075308729388   , vali loss  0.7183370539916936
+epoch  54  , train loss  0.7039359896850402   , vali loss  0.717934759447422
+epoch  55  , train loss  0.7038972867068057   , vali loss  0.7177977928487949
+epoch  56  , train loss  0.7038947086615119   , vali loss  0.7177857660534743
+epoch  57  , train loss  0.7038911514929654   , vali loss  0.7176660756898123
+epoch  58  , train loss  0.7038451569695724   , vali loss  0.7176152116281328
+epoch  59  , train loss  0.7038571457472365   , vali loss  0.717572695848828
+P1 = 0,  P2 = 0, P3 = 0, Fold = 2, CI-i = 0.526071, MSE = 0.717573
+param  4   32   12
+epoch  0  , train loss  27.447014951985373   , vali loss  1.4125245210272674
+epoch  1  , train loss  0.8466183071999228   , vali loss  1.9931286482259596
+epoch  2  , train loss  0.8075654689195924   , vali loss  2.6975641854731505
+epoch  3  , train loss  0.7851217342775473   , vali loss  2.570985078291477
+epoch  4  , train loss  0.7749171790766253   , vali loss  3.1879329941601653
+epoch  5  , train loss  0.7713798968461353   , vali loss  3.0001282637519338
+epoch  6  , train loss  0.7703185466769454   , vali loss  2.8309553544859685
+epoch  7  , train loss  0.7630737881886916   , vali loss  2.656222690324562
+epoch  8  , train loss  0.7605901391812611   , vali loss  2.5397120439284673
+epoch  9  , train loss  0.7527093507727143   , vali loss  2.147258428020246
+epoch  10  , train loss  0.7477588973891409   , vali loss  2.063143920121814
+epoch  11  , train loss  0.7416552719027613   , vali loss  2.1252445625178593
+epoch  12  , train loss  0.742742501142163   , vali loss  1.7725246005953703
+epoch  13  , train loss  0.7345365485835822   , vali loss  1.8325021698132662
+epoch  14  , train loss  0.7300555780359863   , vali loss  1.5944100647818473
+epoch  15  , train loss  0.7252167561287821   , vali loss  1.6023746907024528
+epoch  16  , train loss  0.7245123216572269   , vali loss  1.5660970102882414
+epoch  17  , train loss  0.7199325760155183   , vali loss  1.4477842862556813
+epoch  18  , train loss  0.7191272502959462   , vali loss  1.2485592142923145
+epoch  19  , train loss  0.7177839004362583   , vali loss  1.044786083957752
+epoch  20  , train loss  0.7161229880192768   , vali loss  0.8722506839576163
+epoch  21  , train loss  0.7157639792003107   , vali loss  0.8030798000114513
+epoch  22  , train loss  0.7123399119113665   , vali loss  0.7333330470221646
+epoch  23  , train loss  0.7102986701644473   , vali loss  0.7325616393545833
+epoch  24  , train loss  0.7095066963691824   , vali loss  0.7359282386448716
+epoch  25  , train loss  0.7087759952989365   , vali loss  0.7243104031825212
+epoch  26  , train loss  0.7071534994742213   , vali loss  0.7261447561852337
+epoch  27  , train loss  0.7066896292431314   , vali loss  0.7256780810670419
+epoch  28  , train loss  0.7060484062156163   , vali loss  0.7253194586303694
+epoch  29  , train loss  0.7048332367055135   , vali loss  0.7247632232828405
+epoch  30  , train loss  0.7054707489061334   , vali loss  0.7272179885217603
+epoch  31  , train loss  0.7050571691784856   , vali loss  0.7226817642930521
+epoch  32  , train loss  0.7048071518905559   , vali loss  0.7241372386005602
+epoch  33  , train loss  0.7044047222597619   , vali loss  0.7202911390713393
+epoch  34  , train loss  0.7045929248011562   , vali loss  0.7202249623045384
+epoch  35  , train loss  0.7041891229389174   , vali loss  0.7179260976940319
+epoch  36  , train loss  0.7039992841654967   , vali loss  0.7175619213710159
+epoch  37  , train loss  0.7040043929570511   , vali loss  0.7177093848862044
+epoch  38  , train loss  0.7038689190753852   , vali loss  0.7178353792190358
+epoch  39  , train loss  0.7037937834785557   , vali loss  0.7180809685341861
+epoch  40  , train loss  0.7037463648671628   , vali loss  0.7184103660202684
+epoch  41  , train loss  0.7037249594780158   , vali loss  0.7187794757231687
+epoch  42  , train loss  0.7037002931471509   , vali loss  0.7189367825270389
+epoch  43  , train loss  0.703692327657303   , vali loss  0.7190172395765936
+epoch  44  , train loss  0.7036969631681994   , vali loss  0.7189786900450114
+epoch  45  , train loss  0.7037011770432964   , vali loss  0.7189474305827612
+epoch  46  , train loss  0.7037049771032653   , vali loss  0.7189443917227055
+epoch  47  , train loss  0.70369327399785   , vali loss  0.717923497511339
+epoch  48  , train loss  0.7037454066655668   , vali loss  0.7189469203731713
+epoch  49  , train loss  0.7037067644805014   , vali loss  0.7189492120899574
+epoch  50  , train loss  0.7037061022486738   , vali loss  0.7189499382934249
+epoch  51  , train loss  0.7037053626085309   , vali loss  0.7189610043649375
+epoch  52  , train loss  0.703703273164669   , vali loss  0.7189695626894955
+epoch  53  , train loss  0.7037665446337225   , vali loss  0.7188525662356131
+epoch  54  , train loss  0.703712316461577   , vali loss  0.7189308063002493
+epoch  55  , train loss  0.7037064858093564   , vali loss  0.7189563875770791
+epoch  56  , train loss  0.7037042601569807   , vali loss  0.7189696748946571
+epoch  57  , train loss  0.7038057008268167   , vali loss  0.7175454481460108
+epoch  58  , train loss  0.7039607048754436   , vali loss  0.7179569603464268
+epoch  59  , train loss  0.7038664724603141   , vali loss  0.7181605718724834
+P1 = 0,  P2 = 0, P3 = 1, Fold = 2, CI-i = 0.500544, MSE = 0.717545
+param  8   32   8
+epoch  0  , train loss  23.25057361732789   , vali loss  1.3922178547000938
+epoch  1  , train loss  0.8249722634453445   , vali loss  1.4013531584737025
+epoch  2  , train loss  0.7975933659723272   , vali loss  1.9113974261909286
+epoch  3  , train loss  0.7766027898087797   , vali loss  2.308252179753902
+epoch  4  , train loss  0.7642300293485386   , vali loss  2.3186812685337888
+epoch  5  , train loss  0.7603699408943743   , vali loss  2.736503687264912
+epoch  6  , train loss  0.7532738053282741   , vali loss  2.555113640336711
+epoch  7  , train loss  0.7492255434530729   , vali loss  2.1470656423144363
+epoch  8  , train loss  0.7435920602884931   , vali loss  2.160440043376288
+epoch  9  , train loss  0.742697777075639   , vali loss  2.150341308560266
+epoch  10  , train loss  0.741378786683754   , vali loss  1.9908367804942886
+epoch  11  , train loss  0.7388333468484615   , vali loss  2.0790368284504854
+epoch  12  , train loss  0.7359429218524837   , vali loss  2.22448495440943
+epoch  13  , train loss  0.7295811691115548   , vali loss  2.076462344193278
+epoch  14  , train loss  0.7276651931865084   , vali loss  2.0411969609042573
+epoch  15  , train loss  0.7269713747289072   , vali loss  1.9018284298403574
+epoch  16  , train loss  0.722139751888784   , vali loss  1.868377579928497
+epoch  17  , train loss  0.7210598332018568   , vali loss  1.6989611371163877
+epoch  18  , train loss  0.7177588049694915   , vali loss  1.5435675325032705
+epoch  19  , train loss  0.717037389479705   , vali loss  1.3570387196496074
+epoch  20  , train loss  0.7184422083070117   , vali loss  1.1252101905403136
+epoch  21  , train loss  0.7179297906900385   , vali loss  0.9228719489216
+epoch  22  , train loss  0.7157389117984432   , vali loss  0.8105299598858947
+epoch  23  , train loss  0.7119983398870183   , vali loss  0.7577879440658042
+epoch  24  , train loss  0.7100562780673624   , vali loss  0.7511148140627509
+epoch  25  , train loss  0.7095596784204766   , vali loss  0.75415539629317
+epoch  26  , train loss  0.7078703962097466   , vali loss  0.7437682185605379
+epoch  27  , train loss  0.7067768681000355   , vali loss  0.747148399610934
+epoch  28  , train loss  0.7061672332963175   , vali loss  0.7372236005779307
+epoch  29  , train loss  0.7063756447337015   , vali loss  0.7218769944459918
+epoch  30  , train loss  0.7055924597429573   , vali loss  0.7326082907992475
+epoch  31  , train loss  0.7049638954367327   , vali loss  0.7384532714725974
+epoch  32  , train loss  0.7046591190933982   , vali loss  0.7352267455895007
+epoch  33  , train loss  0.7046177482349735   , vali loss  0.7312729401768442
+epoch  34  , train loss  0.7044895320391327   , vali loss  0.7268389759739213
+epoch  35  , train loss  0.7044629756007977   , vali loss  0.7237906086976515
+epoch  36  , train loss  0.7046952516353138   , vali loss  0.7244169526408872
+epoch  37  , train loss  0.7040764624545416   , vali loss  0.7230423367896263
+epoch  38  , train loss  0.7044118396573805   , vali loss  0.720762696983039
+epoch  39  , train loss  0.7041635333847568   , vali loss  0.718756944399288
+epoch  40  , train loss  0.7040845497393996   , vali loss  0.7194402524492163
+epoch  41  , train loss  0.7040608212328361   , vali loss  0.7180798286335358
+epoch  42  , train loss  0.7040198754457416   , vali loss  0.7178743432734169
+epoch  43  , train loss  0.7041240592054644   , vali loss  0.718450632857565
+epoch  44  , train loss  0.7040747577205714   , vali loss  0.7175967255570862
+epoch  45  , train loss  0.7039837747822856   , vali loss  0.717550842830583
+epoch  46  , train loss  0.7039382887658382   , vali loss  0.7175553914340423
+epoch  47  , train loss  0.7038316243079175   , vali loss  0.7175942532088007
+epoch  48  , train loss  0.7038859664362566   , vali loss  0.7176915728263801
+epoch  49  , train loss  0.703864094081054   , vali loss  0.7179536136283354
+epoch  50  , train loss  0.7038199681235059   , vali loss  0.7181993426207968
+epoch  51  , train loss  0.7037770848573267   , vali loss  0.7184989037648735
+epoch  52  , train loss  0.7037159036335574   , vali loss  0.7186824596026782
+epoch  53  , train loss  0.7037442098306711   , vali loss  0.7188664916516245
+epoch  54  , train loss  0.703716626038586   , vali loss  0.7189344204302592
+epoch  55  , train loss  0.7037066708441418   , vali loss  0.7189450800264617
+epoch  56  , train loss  0.7036458180220355   , vali loss  0.7193431707270233
+epoch  57  , train loss  0.7041447779148692   , vali loss  0.7180149306342013
+epoch  58  , train loss  0.7038459079808385   , vali loss  0.7182505875062263
+epoch  59  , train loss  0.703733807303504   , vali loss  0.7176643824600316
+P1 = 0,  P2 = 1, P3 = 0, Fold = 2, CI-i = 0.520872, MSE = 0.717551
+param  8   32   12
+epoch  0  , train loss  20.529268434157903   , vali loss  1.5416779745610387
+epoch  1  , train loss  0.8255308991885631   , vali loss  1.8160050262858791
+epoch  2  , train loss  0.7871370666060578   , vali loss  2.1155106131722863
+epoch  3  , train loss  0.7769660165371721   , vali loss  2.0782070973068376
+epoch  4  , train loss  0.765427540073088   , vali loss  2.2791056766303877
+epoch  5  , train loss  0.7613384589115121   , vali loss  1.9688759878216537
+epoch  6  , train loss  0.758474596493066   , vali loss  1.7724626094784826
+epoch  7  , train loss  0.7478844096075243   , vali loss  1.9201441360237308
+epoch  8  , train loss  0.7470896751334227   , vali loss  1.5140013071226441
+epoch  9  , train loss  0.7429505549153875   , vali loss  1.5948866043130014
+epoch  10  , train loss  0.7359700902054266   , vali loss  1.6347034268258485
+epoch  11  , train loss  0.732443572233859   , vali loss  1.6891023053432916
+epoch  12  , train loss  0.7301646679030432   , vali loss  1.6839121875470677
+epoch  13  , train loss  0.7261869676025184   , vali loss  1.631514920419715
+epoch  14  , train loss  0.7226200498634111   , vali loss  1.5652506507944859
+epoch  15  , train loss  0.7205495586212116   , vali loss  1.4230056843551255
+epoch  16  , train loss  0.718194516332093   , vali loss  1.23500809632478
+epoch  17  , train loss  0.7183927947469991   , vali loss  1.121380519670973
+epoch  18  , train loss  0.7183970237946824   , vali loss  0.9589326541544404
+epoch  19  , train loss  0.7164752062182732   , vali loss  0.8677219080292318
+epoch  20  , train loss  0.7152088524556256   , vali loss  0.8288403847662849
+epoch  21  , train loss  0.7140753718112979   , vali loss  0.7670228467955849
+epoch  22  , train loss  0.7126179301724828   , vali loss  0.7314419213438017
+epoch  23  , train loss  0.7105894273344413   , vali loss  0.7315409090960611
+epoch  24  , train loss  0.7095001336132121   , vali loss  0.7305170869717188
+epoch  25  , train loss  0.7095172727051751   , vali loss  0.7359125860580916
+epoch  26  , train loss  0.7095884250006216   , vali loss  0.7280097185485748
+epoch  27  , train loss  0.7078727871970418   , vali loss  0.7259492036462695
+epoch  28  , train loss  0.7069684814702757   , vali loss  0.7277937416822509
+epoch  29  , train loss  0.7063947497174357   , vali loss  0.7266794243319297
+epoch  30  , train loss  0.7064108219621654   , vali loss  0.7226703664932181
+epoch  31  , train loss  0.7059172714577339   , vali loss  0.7273046691502736
+epoch  32  , train loss  0.7050689931655924   , vali loss  0.7251100567258277
+epoch  33  , train loss  0.7051247612751022   , vali loss  0.7271141256031135
+epoch  34  , train loss  0.7050405034306895   , vali loss  0.7240180174922997
+epoch  35  , train loss  0.705014250199117   , vali loss  0.7240811049003714
+epoch  36  , train loss  0.7049547338136116   , vali loss  0.7245423968412045
+epoch  37  , train loss  0.7040194625318356   , vali loss  0.7233384194557474
+epoch  38  , train loss  0.7044857927390663   , vali loss  0.7221742230279665
+epoch  39  , train loss  0.7043247894129316   , vali loss  0.7193092336072316
+epoch  40  , train loss  0.7041263655534986   , vali loss  0.7185915084188584
+epoch  41  , train loss  0.7040850948607567   , vali loss  0.7183144240777565
+epoch  42  , train loss  0.7040500171810314   , vali loss  0.7181997643110324
+epoch  43  , train loss  0.7040278410051468   , vali loss  0.7181668736460582
+epoch  44  , train loss  0.7038279314147349   , vali loss  0.7185366944161306
+epoch  45  , train loss  0.7040846671099544   , vali loss  0.7176363183257001
+epoch  46  , train loss  0.7040247682948303   , vali loss  0.7175542377580022
+epoch  47  , train loss  0.7039629520875895   , vali loss  0.7175471521088012
+epoch  48  , train loss  0.7039714173443441   , vali loss  0.7175506816086229
+epoch  49  , train loss  0.7039351555042914   , vali loss  0.7175648420742158
+epoch  50  , train loss  0.7039282193188254   , vali loss  0.7176217696088363
+epoch  51  , train loss  0.7039089362288279   , vali loss  0.7177147606360422
+epoch  52  , train loss  0.7038581958160147   , vali loss  0.7179647354909326
+epoch  53  , train loss  0.7038049715325811   , vali loss  0.7182413578317726
+epoch  54  , train loss  0.703755966344074   , vali loss  0.7188638871563727
+epoch  55  , train loss  0.7036820890255198   , vali loss  0.7191897556748986
+epoch  56  , train loss  0.7036149404268963   , vali loss  0.7178286497218768
+epoch  57  , train loss  0.7038263689498451   , vali loss  0.7179462595964362
+epoch  58  , train loss  0.7038539965116812   , vali loss  0.718260312571519
+epoch  59  , train loss  0.7038080509808928   , vali loss  0.7184080090404942
+P1 = 0,  P2 = 1, P3 = 1, Fold = 2, CI-i = 0.500148, MSE = 0.717547
+[32]
+[4, 8]
+[8, 12]
+param  4   32   8
+epoch  0  , train loss  53.28053583664052   , vali loss  1.6674521049896
+epoch  1  , train loss  0.8437312363828237   , vali loss  2.132526237396437
+epoch  2  , train loss  0.8096991721774123   , vali loss  2.4359266692036767
+epoch  3  , train loss  0.7942013121902068   , vali loss  2.1797973299275686
+epoch  4  , train loss  0.7808300496460223   , vali loss  2.570030074364168
+epoch  5  , train loss  0.7712005028151759   , vali loss  2.7403768501395933
+epoch  6  , train loss  0.765272042681029   , vali loss  3.0979157953878307
+epoch  7  , train loss  0.7632755043934975   , vali loss  2.6278120981478983
+epoch  8  , train loss  0.7610346886736538   , vali loss  2.3458582908451917
+epoch  9  , train loss  0.7594682719647126   , vali loss  2.510046361165175
+epoch  10  , train loss  0.75079530678333   , vali loss  2.3776426351477467
+epoch  11  , train loss  0.7508394422006847   , vali loss  2.359309593275975
+epoch  12  , train loss  0.7459598951394399   , vali loss  2.3087605260763544
+epoch  13  , train loss  0.7441100390288037   , vali loss  2.42696844359875
+epoch  14  , train loss  0.7382230329134916   , vali loss  2.3694927058533706
+epoch  15  , train loss  0.7381399381777075   , vali loss  2.3350053924822034
+epoch  16  , train loss  0.736499627099576   , vali loss  2.4020037919976973
+epoch  17  , train loss  0.7298822771003484   , vali loss  2.2704223934703722
+epoch  18  , train loss  0.7274772343621526   , vali loss  2.1910755481886426
+epoch  19  , train loss  0.7248404658429245   , vali loss  2.0495144502050504
+epoch  20  , train loss  0.7232332518973049   , vali loss  1.9121172337283088
+epoch  21  , train loss  0.7208027973724975   , vali loss  1.7443562148943044
+epoch  22  , train loss  0.7197694620849504   , vali loss  1.56956355677837
+epoch  23  , train loss  0.7178645557486018   , vali loss  1.4248157853592451
+epoch  24  , train loss  0.718849910769907   , vali loss  1.231501304466398
+epoch  25  , train loss  0.7166890914602617   , vali loss  1.0856779075187843
+epoch  26  , train loss  0.7152669325382466   , vali loss  0.9496270472603342
+epoch  27  , train loss  0.7144292852663124   , vali loss  0.838872752621376
+epoch  28  , train loss  0.7110084635469006   , vali loss  0.8199046694123707
+epoch  29  , train loss  0.7094274227480903   , vali loss  0.7603359038568872
+epoch  30  , train loss  0.7080158321599425   , vali loss  0.7447864101099891
+epoch  31  , train loss  0.7068582396388955   , vali loss  0.7376579319398282
+epoch  32  , train loss  0.7062030406362106   , vali loss  0.741966498573111
+epoch  33  , train loss  0.7059053220525834   , vali loss  0.7320464590537058
+epoch  34  , train loss  0.7049760960408787   , vali loss  0.7334971919264918
+epoch  35  , train loss  0.7045764905948292   , vali loss  0.7360772412869295
+epoch  36  , train loss  0.7044061282840068   , vali loss  0.7397264687521066
+epoch  37  , train loss  0.7041663014306295   , vali loss  0.740048322737976
+epoch  38  , train loss  0.70399833484003   , vali loss  0.7376307709841636
+epoch  39  , train loss  0.7040123935310474   , vali loss  0.7361783963570984
+epoch  40  , train loss  0.703715089004487   , vali loss  0.7377827553977958
+epoch  41  , train loss  0.7036126846743112   , vali loss  0.7355383778913991
+epoch  42  , train loss  0.7035394766975607   , vali loss  0.7329998112921241
+epoch  43  , train loss  0.7035782964294061   , vali loss  0.7298340159764397
+epoch  44  , train loss  0.703765944174916   , vali loss  0.7315503116962638
+epoch  45  , train loss  0.7033965034483411   , vali loss  0.728909849071135
+epoch  46  , train loss  0.7034096175256497   , vali loss  0.7275667619993107
+epoch  47  , train loss  0.7037634592216196   , vali loss  0.7224243928794719
+epoch  48  , train loss  0.703537951049706   , vali loss  0.7259598121812908
+epoch  49  , train loss  0.7033394068771377   , vali loss  0.7251155706680772
+epoch  50  , train loss  0.7033191397918451   , vali loss  0.7239662260278319
+epoch  51  , train loss  0.7032737661106013   , vali loss  0.7236915928865412
+epoch  52  , train loss  0.7032639232059974   , vali loss  0.723037821177545
+epoch  53  , train loss  0.7032785576145558   , vali loss  0.7223034105808249
+epoch  54  , train loss  0.7032200911163745   , vali loss  0.7221380195768162
+epoch  55  , train loss  0.7032619138650441   , vali loss  0.7211783972678769
+epoch  56  , train loss  0.7032156582201409   , vali loss  0.7207083977171805
+epoch  57  , train loss  0.7032075359237159   , vali loss  0.7203365423386727
+epoch  58  , train loss  0.7031980294380215   , vali loss  0.7201268273320721
+epoch  59  , train loss  0.7031756718564333   , vali loss  0.7169878948490287
+P1 = 0,  P2 = 0, P3 = 0, Fold = 3, CI-i = 0.487962, MSE = 0.716988
+param  4   32   12
+epoch  0  , train loss  18.829119993339447   , vali loss  1.3091146563629599
+epoch  1  , train loss  0.8397749290025254   , vali loss  1.7048476707978277
+epoch  2  , train loss  0.8027261411425753   , vali loss  2.072395880295265
+epoch  3  , train loss  0.7814987274910787   , vali loss  1.979082760028664
+epoch  4  , train loss  0.7786553098528926   , vali loss  1.8979988688354206
+epoch  5  , train loss  0.7694685254093839   , vali loss  2.03348191556602
+epoch  6  , train loss  0.7641314190510317   , vali loss  2.0832210312671595
+epoch  7  , train loss  0.7551060525744018   , vali loss  2.164295716544338
+epoch  8  , train loss  0.752408707865878   , vali loss  2.01084559551324
+epoch  9  , train loss  0.7439357802998415   , vali loss  2.077649112983807
+epoch  10  , train loss  0.7435567625896337   , vali loss  1.9815595823309544
+epoch  11  , train loss  0.7401082285723491   , vali loss  1.9417920753505713
+epoch  12  , train loss  0.7338107487788706   , vali loss  1.8815860333789387
+epoch  13  , train loss  0.7284912912835572   , vali loss  1.7074816309399872
+epoch  14  , train loss  0.7244702586300739   , vali loss  1.5948746781460716
+epoch  15  , train loss  0.7226013965642738   , vali loss  1.435603698419287
+epoch  16  , train loss  0.7209111357927988   , vali loss  1.2901584502738435
+epoch  17  , train loss  0.7203436460637255   , vali loss  1.0714724669506563
+epoch  18  , train loss  0.7167189036265339   , vali loss  0.9678677007169616
+epoch  19  , train loss  0.7152177148609499   , vali loss  0.8721663903153356
+epoch  20  , train loss  0.7148065731655947   , vali loss  0.8149746907943459
+epoch  21  , train loss  0.7116627982111667   , vali loss  0.7675503271918868
+epoch  22  , train loss  0.7102728645649969   , vali loss  0.7423770370031699
+epoch  23  , train loss  0.7089652156465716   , vali loss  0.7207332510697533
+epoch  24  , train loss  0.7079256083439206   , vali loss  0.7177650651356432
+epoch  25  , train loss  0.7071980255894528   , vali loss  0.7175590321470767
+epoch  26  , train loss  0.7066161793699317   , vali loss  0.7173758442679269
+epoch  27  , train loss  0.7060335901201005   , vali loss  0.7215751243590873
+epoch  28  , train loss  0.7057513572096831   , vali loss  0.7190998120995996
+epoch  29  , train loss  0.7052051859078835   , vali loss  0.7172360110091767
+epoch  30  , train loss  0.7046188343707765   , vali loss  0.7198093417657493
+epoch  31  , train loss  0.7044128128773268   , vali loss  0.7202559585948471
+epoch  32  , train loss  0.7041001588407066   , vali loss  0.7203547274287938
+epoch  33  , train loss  0.7040264832295446   , vali loss  0.7238038017891442
+epoch  34  , train loss  0.703839615264847   , vali loss  0.720827324522026
+epoch  35  , train loss  0.7036497124713985   , vali loss  0.7232099647778186
+epoch  36  , train loss  0.703651628907857   , vali loss  0.7269623162261463
+epoch  37  , train loss  0.7035032930611972   , vali loss  0.7231807380066391
+epoch  38  , train loss  0.7034968564097719   , vali loss  0.7206797377027341
+epoch  39  , train loss  0.7033740365527598   , vali loss  0.7201205966128952
+epoch  40  , train loss  0.7033099446360079   , vali loss  0.7195342937629452
+epoch  41  , train loss  0.7032645544636116   , vali loss  0.7190471791357348
+epoch  42  , train loss  0.7032523650914737   , vali loss  0.7185807365842276
+epoch  43  , train loss  0.7032497077658633   , vali loss  0.7183078740961543
+epoch  44  , train loss  0.7032522287861845   , vali loss  0.7180694118319801
+epoch  45  , train loss  0.7032061393502048   , vali loss  0.7178232701100911
+epoch  46  , train loss  0.7031873857371974   , vali loss  0.7176957584914143
+epoch  47  , train loss  0.7032320531749237   , vali loss  0.7174686375767063
+epoch  48  , train loss  0.7030545865432742   , vali loss  0.7196899882534624
+epoch  49  , train loss  0.70328288956183   , vali loss  0.7171935910436804
+epoch  50  , train loss  0.70316047512467   , vali loss  0.7170615330020177
+epoch  51  , train loss  0.7031334201260978   , vali loss  0.7169935288624747
+epoch  52  , train loss  0.7031100517030817   , vali loss  0.7169414540392979
+epoch  53  , train loss  0.7030833500046981   , vali loss  0.7169573861712268
+epoch  54  , train loss  0.7030415767355351   , vali loss  0.7171386085215137
+epoch  55  , train loss  0.7029673093753631   , vali loss  0.7173094721204331
+epoch  56  , train loss  0.703310998681655   , vali loss  0.7170285376017421
+epoch  57  , train loss  0.7030132198008333   , vali loss  0.7171804534257278
+epoch  58  , train loss  0.7029993435558564   , vali loss  0.7172007238618726
+epoch  59  , train loss  0.7029987587716592   , vali loss  0.7172138581289731
+P1 = 0,  P2 = 0, P3 = 1, Fold = 3, CI-i = 0.519512, MSE = 0.716941
+param  8   32   8
+epoch  0  , train loss  41.777709304185585   , vali loss  0.9242152396302782
+epoch  1  , train loss  0.8466884965880639   , vali loss  1.413658786433322
+epoch  2  , train loss  0.819186133405463   , vali loss  1.650385788099256
+epoch  3  , train loss  0.7953924300935667   , vali loss  1.8125791831238882
+epoch  4  , train loss  0.7812018449632259   , vali loss  1.9149273497684887
+epoch  5  , train loss  0.7700894397865227   , vali loss  2.0623075579561427
+epoch  6  , train loss  0.764264960812557   , vali loss  2.234292722001178
+epoch  7  , train loss  0.765301559588228   , vali loss  2.2841789277880102
+epoch  8  , train loss  0.7574369556779603   , vali loss  2.3364250935631876
+epoch  9  , train loss  0.7465356461134087   , vali loss  2.2785528295751067
+epoch  10  , train loss  0.7494672144606714   , vali loss  2.2642573651503413
+epoch  11  , train loss  0.7441861986799432   , vali loss  2.320540337676514
+epoch  12  , train loss  0.7413213970188294   , vali loss  2.4320941429727547
+epoch  13  , train loss  0.7341676985263655   , vali loss  2.185135857736788
+epoch  14  , train loss  0.7321079951109507   , vali loss  2.1505452994675123
+epoch  15  , train loss  0.7282669458392186   , vali loss  2.126790251275334
+epoch  16  , train loss  0.725887627006817   , vali loss  1.994170718604592
+epoch  17  , train loss  0.7242327110578289   , vali loss  1.861202154108013
+Traceback (most recent call last):
+  File "tranpytorch.py", line 457, in <module>
+    run_regression(FLAGS)
+  File "tranpytorch.py", line 446, in run_regression
+    experiment(FLAGS, perfmeasure)
+  File "tranpytorch.py", line 437, in experiment
+    perfmeasure, FLAGS, dataset)
+  File "tranpytorch.py", line 102, in nfold_1_2_3_setting_sample
+    val_sets)
+  File "tranpytorch.py", line 314, in general_nfold_cv
+    output = model(train_drug_batch, train_prot_batch)
+  File "/home/tainv/anaconda3/envs/py36/lib/python3.6/site-packages/torch/nn/modules/module.py", line 489, in __call__
+    result = self.forward(*input, **kwargs)
+  File "tranpytorch.py", line 189, in forward
+    encode_protein = F.relu(self.conv3XT(encode_protein))
+  File "/home/tainv/anaconda3/envs/py36/lib/python3.6/site-packages/torch/nn/functional.py", line 862, in relu
+    result = torch.relu(input)
+RuntimeError: CUDA out of memory. Tried to allocate 91.88 MiB (GPU 0; 10.91 GiB total capacity; 1.14 GiB already allocated; 60.38 MiB free; 27.95 MiB cached)
